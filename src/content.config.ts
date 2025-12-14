@@ -2,6 +2,12 @@ import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
 import { allLocales, themeConfig } from '@/config'
 
+// FAQ schema for AEO optimization
+const faqSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+})
+
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z.object({
@@ -15,6 +21,8 @@ const posts = defineCollection({
       z.date().optional(),
     ),
     tags: z.array(z.string()).optional().default([]),
+    // AEO: FAQ for structured data
+    faqs: z.array(faqSchema).optional().default([]),
     // Advanced
     draft: z.boolean().optional().default(false),
     pin: z.number().int().min(0).max(99).optional().default(0),

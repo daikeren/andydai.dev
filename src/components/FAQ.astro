@@ -1,0 +1,52 @@
+---
+/**
+ * FAQ - 視覺化的常見問題組件
+ * 在文章底部顯示 FAQ，同時 Schema 由 ArticleSchema 組件處理
+ */
+
+interface FAQ {
+  question: string
+  answer: string
+}
+
+interface Props {
+  faqs: FAQ[]
+}
+
+const { faqs } = Astro.props
+---
+
+{faqs.length > 0 && (
+  <section class="faq-section mt-12">
+    <h2 class="text-1.5em font-bold mb-6">常見問題</h2>
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <details class="faq-item mb-4 border-b border-secondary/20 pb-4" open={index === 0}>
+          <summary class="faq-question cursor-pointer font-medium text-1.1em py-2 list-none">
+            <span class="inline-flex items-center gap-2">
+              <span class="faq-icon text-primary">Q.</span>
+              {faq.question}
+            </span>
+          </summary>
+          <div class="faq-answer mt-3 pl-6 c-secondary">
+            <span class="text-primary font-medium">A.</span> {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] summary {
+    color: var(--c-primary);
+  }
+
+  .faq-question:hover {
+    color: var(--c-primary);
+  }
+</style>

@@ -2,7 +2,9 @@
 import type { CollectionEntry } from 'astro:content'
 import type { Language } from '@/i18n/config'
 import { getCollection, render } from 'astro:content'
+import ArticleSchema from '@/components/ArticleSchema.astro'
 import Comment from '@/components/Comment/Index.astro'
+import FAQ from '@/components/FAQ.astro'
 import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
@@ -86,6 +88,16 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
   postSlug={post.id}
   supportedLangs={supportedLangs}
 >
+  <!-- AEO: Article + FAQ Schema -->
+  <ArticleSchema
+    title={post.data.title}
+    description={description}
+    published={post.data.published}
+    updated={post.data.updated}
+    slug={slug}
+    tags={post.data.tags}
+    faqs={post.data.faqs}
+  />
   <article class="heti">
     <div class="relative">
       <!-- Go Back Button On Desktop -->
@@ -119,6 +131,10 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     <!-- Content -->
     <div id="post-content">
       <Content />
+      <!-- FAQ Section -->
+      {post.data.faqs && post.data.faqs.length > 0 && (
+        <FAQ faqs={post.data.faqs} />
+      )}
       <!-- Copyright -->
       <div id="post-copyright" />
       <!-- Tag List -->

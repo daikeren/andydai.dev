@@ -2,4 +2,18 @@
 lang: en
 ---
 
-Retypeset is a static blog theme based on the [Astro](https://astro.build/) framework. Inspired by [Typography](https://astro-theme-typography.vercel.app/), Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.
+I'm Andy, a Startup Founder and Tech Lead.
+
+This blog documents my hands-on experience in AI engineering, team management, and startup operations.
+
+## Focus Areas
+
+- **AI Engineering**: AI Agents, LLM Applications, Developer Productivity
+- **Startup**: Product Development, Team Building, Growth Strategy
+- **Tech Leadership**: Engineering Culture, Code Review, Technical Decisions
+
+## Contact
+
+- GitHub: [andydai](https://github.com/andydai)
+- Twitter/X: [@andydai](https://x.com/andydai)
+- LinkedIn: [andydai](https://linkedin.com/in/andydai)
