@@ -17,3 +17,4 @@ lang: zh-tw
 - GitHub: [daikeren](https://github.com/daikeren)
 - Twitter/X: [@_andydai](https://x.com/_andydai)
 - LinkedIn: [andydai](https://www.linkedin.com/in/andy-dai-b3ab3335/)
+- email: [daikeren@gmail.com](mailto:daikeren@gmail.com)
