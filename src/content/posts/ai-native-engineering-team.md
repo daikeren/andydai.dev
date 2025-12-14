@@ -1,6 +1,6 @@
 ---
 title: 工程團隊如何用 AI 把開發時間從兩週壓到一天
-published: 2024-12-13
+published: 2025-12-13
 description: 一個 6 人 startup 從傳統開發流程轉型成 AI 原生團隊的實戰經驗。核心改變是三件事：Spec 變輕、AI 先 review、Preview 環境讓 iteration 變快。
 tags: [ai-engineering, startup, developer-productivity]
 lang: zh-tw
