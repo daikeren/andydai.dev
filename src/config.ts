@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '@/types'
+import type { ThemeConfig } from "@/types";
 
 export const themeConfig: ThemeConfig = {
   // SITE INFORMATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
@@ -6,51 +6,52 @@ export const themeConfig: ThemeConfig = {
     // site title
     title: "Andy's System",
     // site subtitle
-    subtitle: 'AI、工程團隊、Startup 的實戰經驗',
+    subtitle: "AI、工程團隊、Startup 的實戰經驗",
     // site description
-    description: 'AI 工程、Startup 經營、技術領導力的實戰經驗分享。專注於 AI Agent、Developer Productivity、團隊管理。',
+    description:
+      "AI 工程、Startup 經營、技術領導力的實戰經驗分享。專注於 AI Agent、Developer Productivity、團隊管理。",
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
     i18nTitle: false, // true | false
     // author name
-    author: 'Andy Dai',
+    author: "Andy Dai",
     // site url
-    url: 'https://andydai.dev',
+    url: "https://andydai.dev",
     // base path
     // root directory for all pages and assets
-    base: '/', // e.g., '/blog', '/docs'
+    base: "/", // e.g., '/blog', '/docs'
     // favicon url
     // recommended formats: svg, png or ico
-    favicon: '/icons/favicon.svg', // or https://example.com/favicon.svg
+    favicon: "/icons/favicon.svg", // or https://example.com/favicon.svg
   },
   // SITE INFORMATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   color: {
     // default theme mode
-    mode: 'light', // light | dark | auto
+    mode: "auto", // light | dark | auto
     light: {
       // primary color
       // used for title, hover, etc
       // oklch color picker: https://oklch.com/
-      primary: 'oklch(25% 0.005 298)',
+      primary: "oklch(25% 0.005 298)",
       // secondary color
       // used for post text
-      secondary: 'oklch(40% 0.005 298)',
+      secondary: "oklch(40% 0.005 298)",
       // background color
-      background: 'oklch(96% 0.005 298)',
+      background: "oklch(96% 0.005 298)",
       // highlight color
       // used for navbar, selected text, etc
-      highlight: 'oklch(0.93 0.195089 103.2532 / 0.5)', // rgba(255,235,0,0.5)
+      highlight: "oklch(0.93 0.195089 103.2532 / 0.5)", // rgba(255,235,0,0.5)
     },
     dark: {
       // primary color
-      primary: 'oklch(92% 0.005 298)',
+      primary: "oklch(92% 0.005 298)",
       // secondary color
-      secondary: 'oklch(77% 0.005 298)',
+      secondary: "oklch(77% 0.005 298)",
       // background color
-      background: 'oklch(22% 0.005 298)',
+      background: "oklch(22% 0.005 298)",
       // highlight color
-      highlight: 'oklch(0.93 0.195089 103.2532 / 0.2)', // rgba(255,235,0,0.2)
+      highlight: "oklch(0.93 0.195089 103.2532 / 0.2)", // rgba(255,235,0,0.2)
     },
   },
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
@@ -58,14 +59,14 @@ export const themeConfig: ThemeConfig = {
   // GLOBAL SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   global: {
     // default language
-    locale: 'zh-tw', // de | en | es | fr | ja | ko | pl | pt | ru | zh | zh-tw
+    locale: "zh-tw", // de | en | es | fr | ja | ko | pl | pt | ru | zh | zh-tw
     // more languages
     // not fill in the locale code above again, can be an empty array []
-    moreLocales: ['en'], // ['de', 'en', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'ru', 'zh', 'zh-tw']
+    moreLocales: ["en"], // ['de', 'en', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'ru', 'zh', 'zh-tw']
     // post font style
-    fontStyle: 'sans', // sans | serif
+    fontStyle: "sans", // sans | serif
     // post date format
-    dateFormat: 'YYYY-MM-DD', // YYYY-MM-DD | MM-DD-YYYY | DD-MM-YYYY | MMM D YYYY | D MMM YYYY
+    dateFormat: "YYYY-MM-DD", // YYYY-MM-DD | MM-DD-YYYY | DD-MM-YYYY | MMM D YYYY | D MMM YYYY
     // enable table of contents
     toc: true, // true | false
     // enable katex math rendering
@@ -82,30 +83,30 @@ export const themeConfig: ThemeConfig = {
     // giscus
     // https://giscus.app/
     giscus: {
-      repo: '',
-      repoId: '',
-      category: '',
-      categoryId: '',
-      mapping: 'pathname',
-      strict: '0',
-      reactionsEnabled: '1',
-      emitMetadata: '0',
-      inputPosition: 'bottom',
+      repo: "",
+      repoId: "",
+      category: "",
+      categoryId: "",
+      mapping: "pathname",
+      strict: "0",
+      reactionsEnabled: "1",
+      emitMetadata: "0",
+      inputPosition: "bottom",
     },
     // twikoo
     // https://twikoo.js.org/
     twikoo: {
-      envId: '',
+      envId: "",
       // version: frontend version can be changed in package.json
     },
     // waline
     // https://waline.js.org/en/
     waline: {
       // server url
-      serverURL: '', // TODO: 設定 Waline 或改用 Giscus
+      serverURL: "", // TODO: 設定 Waline 或改用 Giscus
       // emoji url
       emoji: [
-        'https://unpkg.com/@waline/emojis@1.2.0/tw-emoji',
+        "https://unpkg.com/@waline/emojis@1.2.0/tw-emoji",
         // 'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
         // more emojis: https://waline.js.org/en/guide/features/emoji.html
       ],
@@ -120,40 +121,40 @@ export const themeConfig: ThemeConfig = {
   // SEO SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   seo: {
     // @twitter ID
-    twitterID: '@andydai', // TODO: 換成你的 Twitter ID
+    twitterID: "@andydai", // TODO: 換成你的 Twitter ID
     // site verification
     verification: {
       // google search console
       // https://search.google.com/search-console
-      google: '', // TODO: 加入 Google Search Console 驗證碼
+      google: "", // TODO: 加入 Google Search Console 驗證碼
       // bing webmaster tools
       // https://www.bing.com/webmasters
-      bing: '',
+      bing: "",
       // yandex webmaster
       // https://webmaster.yandex.com
-      yandex: '',
+      yandex: "",
       // baidu search
       // https://ziyuan.baidu.com
-      baidu: '',
+      baidu: "",
     },
     // google analytics
     // https://analytics.google.com
-    googleAnalyticsID: '', // TODO: 加入 GA ID
+    googleAnalyticsID: "", // TODO: 加入 GA ID
     // umami analytics
     // https://cloud.umami.is
-    umamiAnalyticsID: '',
+    umamiAnalyticsID: "",
     // follow verification
     // https://follow.is/
     follow: {
       // feed ID
-      feedID: '',
+      feedID: "",
       // user ID
-      userID: '',
+      userID: "",
     },
     // apiflash access key
     // generate website screenshots for open graph images
     // get your access key at: https://apiflash.com/
-    apiflashKey: '',
+    apiflashKey: "",
   },
   // SEO SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
 
@@ -162,20 +163,20 @@ export const themeConfig: ThemeConfig = {
     // social links
     links: [
       {
-        name: 'RSS',
-        url: '/atom.xml', // or /rss.xml
+        name: "RSS",
+        url: "/atom.xml", // or /rss.xml
       },
       {
-        name: 'GitHub',
-        url: 'https://github.com/andydai', // TODO: 換成你的 GitHub
+        name: "GitHub",
+        url: "https://github.com/daikeren",
       },
       {
-        name: 'X',
-        url: 'https://x.com/andydai', // TODO: 換成你的 X/Twitter
+        name: "X",
+        url: "https://x.com/_andydai",
       },
       {
-        name: 'LinkedIn',
-        url: 'https://linkedin.com/in/andydai', // TODO: 換成你的 LinkedIn
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/andy-dai-b3ab3335/", // TODO: 換成你的 LinkedIn
       },
     ],
     // year of website start
@@ -187,20 +188,21 @@ export const themeConfig: ThemeConfig = {
   preload: {
     // image hosting url
     // optimize remote images and generate low-quality placeholders
-    imageHostURL: '',
+    imageHostURL: "",
     // custom google analytics js
     // for users who proxy tracking scripts to a custom domain
     // see https://gist.github.com/xiaopc/0602f06ca465d76bd9efd3dda9393738
-    customGoogleAnalyticsJS: '',
+    customGoogleAnalyticsJS: "",
     // custom umami analytics js
     // for users who self-deploy umami or proxy tracking scripts to a custom domain
     // see https://umami.is/docs/bypass-ad-blockers
-    customUmamiAnalyticsJS: '',
+    customUmamiAnalyticsJS: "",
   },
   // PRELOAD SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END
-}
+};
 
-export const base = themeConfig.site.base === '/' ? '' : themeConfig.site.base.replace(/\/$/, '')
-export const defaultLocale = themeConfig.global.locale
-export const moreLocales = themeConfig.global.moreLocales
-export const allLocales = [defaultLocale, ...moreLocales]
+export const base =
+  themeConfig.site.base === "/" ? "" : themeConfig.site.base.replace(/\/$/, "");
+export const defaultLocale = themeConfig.global.locale;
+export const moreLocales = themeConfig.global.moreLocales;
+export const allLocales = [defaultLocale, ...moreLocales];
