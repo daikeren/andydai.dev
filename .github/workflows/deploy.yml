@@ -13,9 +13,33 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed_posts: ${{ steps.changed-posts.outputs.posts }}
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Get changed posts
+        id: changed-posts
+        run: |
+          # Get changed .md files in posts directory
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- 'src/content/posts/*.md' 2>/dev/null || echo "")
+
+          # Convert to URLs
+          URLS=""
+          for file in $CHANGED_FILES; do
+            # Extract slug from filename (remove path and .md extension)
+            SLUG=$(basename "$file" .md)
+            if [ -n "$SLUG" ]; then
+              URLS="${URLS}https://andydai.dev/posts/${SLUG}/ "
+            fi
+          done
+
+          echo "posts=$URLS" >> $GITHUB_OUTPUT
+          echo "Changed posts: $URLS"
+
       - name: Install, build, and upload your site
         uses: withastro/action@v5
 
@@ -29,3 +53,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: ${{ needs.build.outputs.changed_posts != '' }}
+    steps:
+      - name: Notify IndexNow
+        run: |
+          POSTS="${{ needs.build.outputs.changed_posts }}"
+          KEY="80098fa1f5b14224bea1f6578ae2b386"
+
+          for url in $POSTS; do
+            echo "Submitting to IndexNow: $url"
+            curl -s "https://api.indexnow.org/indexnow?url=${url}&key=${KEY}"
+            echo ""
+          done
