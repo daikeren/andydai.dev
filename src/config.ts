@@ -14,7 +14,7 @@ export const themeConfig: ThemeConfig = {
     // author name
     author: 'Andy Dai',
     // site url
-    url: 'https://andy.dev', // TODO: 換成你的 domain
+    url: 'https://andydai.dev',
     // base path
     // root directory for all pages and assets
     base: '/', // e.g., '/blog', '/docs'
