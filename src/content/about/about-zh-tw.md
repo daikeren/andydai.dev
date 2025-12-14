@@ -14,6 +14,6 @@ lang: zh-tw
 
 ## 聯絡方式
 
-- GitHub: [andydai](https://github.com/andydai)
-- Twitter/X: [@andydai](https://x.com/andydai)
-- LinkedIn: [andydai](https://linkedin.com/in/andydai)
+- GitHub: [daikeren](https://github.com/daikeren)
+- Twitter/X: [@_andydai](https://x.com/_andydai)
+- LinkedIn: [andydai](https://www.linkedin.com/in/andy-dai-b3ab3335/)
