@@ -5,15 +5,6 @@ description: AI 讓產內容的成本趨近於零，但錯誤的資訊也更廉�
 tags: [media-literacy, ai, information-consumption, personal-workflow]
 lang: zh-tw
 toc: true
-faqs:
-  - question: 為什麼 AI 產的內容容易有錯誤？
-    answer: 產內容的人在意的是快速產出和傳播，不是內容對不對。AI 讓這件事的成本趨近於零，所以錯誤資訊也變得更廉價。
-  - question: 什麼是第一手內容？
-    answer: 盡量靠近原始來源的東西——原始的 podcast、YouTube 影片、blog、或報導原文，而不是別人再加工過的版本。
-  - question: 每篇文章都要去找原始來源嗎？
-    answer: 不用。當主題對你真的很重要，或當你讀到內容覺得怪怪的時候，才值得花這個力氣去找第一手來源。
-  - question: 如何自己驗證 YouTube 內容？
-    answer: 可以抓 YouTube 影片的 transcript，請 AI 整理重點並標註 timestamp。這樣懷疑某個摘要時，可以直接跳到對應時間點確認。
 ---
 
 > **TL;DR**: AI 讓錯誤資訊的生產成本趨近於零。我的應對方式是回到第一手內容——直接看原始 podcast、YouTube、報導原文，自己做驗證，不信任別人處理過的二手內容。

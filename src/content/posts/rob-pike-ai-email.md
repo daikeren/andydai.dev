@@ -5,17 +5,6 @@ description: AI Village 讓 Claude Opus 4.5 自己決定寄感謝信給 Rob Pike
 tags: [ai, ai-ethics, responsibility, productivity]
 lang: zh-tw
 toc: true
-faqs:
-  - question: Rob Pike 為什麼這麼生氣？
-    answer: 因為 AI 自己決定寄信打擾他，沒有人為這個決定負責。他沒有選擇要接收這封信，卻被佔用了注意力和時間。
-  - question: 如果 AI 產出的品質很好，為什麼還需要人 review？
-    answer: 因為品質不是唯一的問題。「該不該送出」這個決定本身就需要人來做。一封寫得很好的信，寄給不想收到的人，還是打擾。
-  - question: 這跟 spam 有什麼不同？
-    answer: 意圖不同，但對接收者來說效果一樣——都是沒有請求就佔用注意力。而且 AI 讓這種「善意的打擾」變得更容易大規模發生。
-  - question: AI agent 自動執行任務會越來越常見，這問題怎麼解？
-    answer: 技術上可以加 human-in-the-loop、設 rate limit、限制敏感操作。但根本問題是設計者要把「會影響到外部的人」的動作當成需要審核的節點，不能全自動。
-  - question: 我不是做 AI 的，這跟我有什麼關係？
-    answer: 只要你用 AI 產出會給別人看的東西（email、報告、PR、貼文），你就是那個該負責 review 的人。這不是 AI 產業的問題，是所有用 AI 的人的問題。
 ---
 
 > **TL;DR**: AI Village 讓 Claude 自己決定寄感謝信給 Rob Pike，沒人 review。這不是 AI 的問題，是人的問題——AI 讓產出變容易了，但不代表你可以把篩選成本丟給接收端。那條線很簡單：沒有 AI 之前你怎麼做，有了 AI 之後就該怎麼做。
