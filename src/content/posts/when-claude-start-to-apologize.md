@@ -1,6 +1,6 @@
 ---
 title: 當 Claude 開始道歉：主動控制 Context 邊界的四個做法
-published: 2025-01-06
+published: 2026-01-06
 description: 當 Claude 說「You're absolutely right, I apologize」時，信任已經在崩塌邊緣。與其等到那一刻才被迫重開，不如主動控制 context 邊界——Handoff、Subagent、分階段執行、驗證基礎設施。
 tags: [ai, claude, ai-coding, productivity]
 lang: zh-tw
