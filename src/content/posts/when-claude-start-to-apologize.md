@@ -31,7 +31,7 @@ toc: true
 
 ## 三個常見的崩塌觸發點
 
-根據我在 Codeer 的經驗，有三種情況特別容易觸發這個瞬間：
+根據我們在公司的經驗，有三種情況特別容易觸發這個瞬間：
 
 **Context 爆炸**：對話太長，AI 開始忘記最初的目標。剛開始用 AI agent coding 的時候，我會把一個對話無止境延續下去。做比較大的 feature 或中間遇到 bug 時，到某個時間點就會發現——他已經在做跟一開始要求的事情完全無關的部分了。
 
@@ -109,7 +109,7 @@ Claude Code 可以 spawn subagent——獨立的 agent instance，跑完把結�
 
 這個概念來自 [Factory](https://factory.ai/)：大多數組織的驗證標準只夠人類使用，不足以支撐 AI agent。
 
-讓 AI slop 無法通過，而非靠人工審查。我們在 Codeer 的做法：
+讓 AI slop 無法通過，而非靠人工審查。在我們團隊的做法：
 
 - 設好 CI/CD
 - Python 和 TypeScript 都有 linter
