@@ -7,8 +7,6 @@ lang: zh-tw
 toc: true
 ---
 
-# 當 Claude 開始道歉：主動控制 Context 邊界的四個做法
-
 > **TL;DR**: 當 Claude 說「You're absolutely right」，代表信任即將崩塌。四個主動控制 context 的做法：(1) Handoff 切換 session (2) Subagent 隔離任務 (3) Research-Plan-Implement 分階段 (4) 驗證基礎設施擋住 AI slop。把 session 當耗材，不要等到崩塌才重開。
 
 ## 那句道歉的瞬間
