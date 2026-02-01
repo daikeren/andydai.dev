@@ -112,4 +112,4 @@ If the answer is "no, I'd look at it once more," then you should do that now.
 4. **Does this sound like me?** — If the recipient knows you, would they think you wrote this?
 5. **Am I willing to take responsibility if something goes wrong?** — If the answer is "no," don't send it
 
-I previously wrote "[AI Made Misinformation Cheaper—So I Only Consume Primary Sources](/posts/ai-misinformation-first-hand-content/)," about how I avoid AI garbage when actively consuming information. This article is about the other side: what's your responsibility when you produce things for others with AI. Together, these roughly capture how I think about "using AI without becoming a jerk."
+I previously wrote "[AI Made Misinformation Cheaper—So I Only Consume Primary Sources](/en/posts/ai-misinformation-first-hand-content/)," about how I avoid AI garbage when actively consuming information. This article is about the other side: what's your responsibility when you produce things for others with AI. Together, these roughly capture how I think about "using AI without becoming a jerk."

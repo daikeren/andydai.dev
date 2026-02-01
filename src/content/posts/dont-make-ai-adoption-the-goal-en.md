@@ -61,7 +61,7 @@ Then the question becomes: where is efficiency currently blocked? Is it because 
 
 My advice is simple: start with basic Gemini, ChatGPT, or Claude. After everyone's proficient at using AI, needs like "can AI search our internal database" will naturally emerge. Then gradually integrate these processes step by step.
 
-Our own team's [AI coding agent adoption](/posts/ai-native-engineering-team/) was the same—start using it, needs will naturally emerge.
+Our own team's [AI coding agent adoption](/en/posts/ai-native-engineering-team/) was the same—start using it, needs will naturally emerge.
 
 ---
 

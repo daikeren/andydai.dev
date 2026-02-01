@@ -74,6 +74,7 @@ For English versions:
 - Rewrite Taiwan-specific examples for international context
 - Meta description in English
 - Maintain the author's voice and directness
+- **Internal links must use `/en/posts/...`** (not `/posts/...`)
 
 ## Frontmatter Reference
 
