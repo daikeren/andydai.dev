@@ -4,6 +4,7 @@ published: 2025-12-10
 description: AI 讓產內容的成本趨近於零，但錯誤的資訊也更廉價了。我的應對方式是回到第一手內容——直接看 podcast、YouTube、原始報導，自己做驗證，不信任別人處理過的二手內容。
 tags: [media-literacy, ai, information-consumption, personal-workflow]
 lang: zh-tw
+abbrlink: ai-misinformation-first-hand-content
 toc: true
 ---
 

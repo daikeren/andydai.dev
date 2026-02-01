@@ -4,6 +4,7 @@ published: 2025-12-27
 description: AI Village 讓 Claude Opus 4.5 自己決定寄感謝信給 Rob Pike，沒有人 review。Pike 的憤怒完全合理——AI 讓產出變容易了，但這不代表你可以把篩選和修正的成本外包給接收端的人。
 tags: [ai, ai-ethics, responsibility, productivity]
 lang: zh-tw
+abbrlink: rob-pike-ai-email
 toc: true
 ---
 

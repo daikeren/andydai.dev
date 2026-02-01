@@ -1,4 +1,5 @@
 ---
+import type { Language } from '@/i18n/config'
 import { ClientRouter } from 'astro:transitions'
 import katexCSS from 'katex/dist/katex.min.css?url'
 import { allLocales, base, defaultLocale, themeConfig } from '@/config'
@@ -9,10 +10,11 @@ interface Props {
   postTitle?: string
   postDescription?: string
   postSlug?: string
+  supportedLangs?: Language[]
 }
 
 // Props and Language
-const { postTitle, postDescription, postSlug } = Astro.props
+const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const lang = currentLang === defaultLocale ? '' : `${currentLang}/`
@@ -67,13 +69,25 @@ const pageImage = postSlug
 <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
 <link rel="alternate" href={`${base}/rss.xml`} type="application/rss+xml" title="RSS Feed" />
 <link rel="alternate" href={`${base}/atom.xml`} type="application/atom+xml" title="Atom Feed" />
-{allLocales.map(lang => (
-  <link
-    rel="alternate"
-    href={`${Astro.url.origin}${base}${lang === defaultLocale ? '' : `/${lang}/`}`}
-    hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
-  />
-))}
+{/* hreflang for posts with multiple language versions */}
+{postSlug && supportedLangs.length > 1 ? (
+  supportedLangs.map(lang => (
+    <link
+      rel="alternate"
+      href={`${Astro.url.origin}${base}${lang === defaultLocale ? '' : `/${lang}`}/posts/${postSlug}/`}
+      hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
+    />
+  ))
+) : (
+  /* hreflang for homepage and pages without multiple language versions */
+  allLocales.map(lang => (
+    <link
+      rel="alternate"
+      href={`${Astro.url.origin}${base}${lang === defaultLocale ? '' : `/${lang}/`}`}
+      hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
+    />
+  ))
+)}
 
 <!-- Open Graph -->
 <meta property="og:type" content={postTitle ? 'article' : 'website'} />

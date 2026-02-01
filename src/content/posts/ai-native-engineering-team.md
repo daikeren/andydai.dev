@@ -4,6 +4,7 @@ published: 2025-12-13
 description: 一個 6 人 startup 從傳統開發流程轉型成 AI 原生團隊的實戰經驗。核心改變是三件事：Spec 變輕、AI 先 review、Preview 環境讓 iteration 變快。
 tags: [ai-engineering, startup, developer-productivity]
 lang: zh-tw
+abbrlink: ai-native-engineering-team
 toc: true
 faqs:
   - question: AI coding agent 適合什麼任務？

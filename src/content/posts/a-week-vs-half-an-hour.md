@@ -4,6 +4,7 @@ published: 2026-01-18
 description: 同事用 AI Agent 搭配 Browser Automation 花了一週收集不到 100 筆名單，我用 Playwright 寫個 Crawler 半小時就搞定。工具會變，但「手上有新錘子，看什麼都像釘子」這個 pattern 一直在重複。
 tags: [ai-engineering, developer-productivity, ai-agent]
 lang: zh-tw
+abbrlink: a-week-vs-half-an-hour
 toc: true
 ---
 

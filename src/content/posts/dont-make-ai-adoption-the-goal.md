@@ -4,6 +4,7 @@ published: 2026-02-01
 description: 很多公司在糾結「哪個 AI 工具最好」，但真正該問的是：現在效率卡在哪裡？如果基本的數位化和流程標準化都還沒到位，換再強的 model 也只是多花錢。
 tags: [ai-adoption, digital-transformation, startup]
 lang: zh-tw
+abbrlink: dont-make-ai-adoption-the-goal
 toc: true
 faqs:
   - question: 導入 AI 之前應該先問什麼問題？
