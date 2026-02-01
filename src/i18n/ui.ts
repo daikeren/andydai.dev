@@ -8,6 +8,7 @@ interface Translation {
   tags: string
   about: string
   toc: string
+  faq: string
 }
 
 export const ui: Record<Language, Translation> = {
@@ -19,15 +20,17 @@ export const ui: Record<Language, Translation> = {
     tags: 'Schlagwörter',
     about: 'Über',
     toc: 'Inhaltsverzeichnis',
+    faq: 'Häufig gestellte Fragen',
   },
   'en': {
-    title: 'Retypeset',
-    subtitle: 'Revive the beauty of typography',
-    description: 'Retypeset is a static blog theme based on the Astro framework. Inspired by Typography, Retypeset establishes a new visual standard and reimagines the layout of all pages, creating a reading experience reminiscent of paper books, reviving the beauty of typography. Details in every sight, elegance in every space.',
+    title: "Andy's System",
+    subtitle: 'Hands-on insights in AI, Engineering Teams, and Startups',
+    description: 'Practical experience in AI engineering, startup operations, and tech leadership. Focused on AI Agents, Developer Productivity, and Team Management.',
     posts: 'Posts',
     tags: 'Tags',
     about: 'About',
     toc: 'Table of Contents',
+    faq: 'Frequently Asked Questions',
   },
   'es': {
     title: 'Retipografía',
@@ -37,6 +40,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Etiquetas',
     about: 'Sobre',
     toc: 'Índice',
+    faq: 'Preguntas frecuentes',
   },
   'fr': {
     title: 'Retypographie',
@@ -46,6 +50,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Étiquettes',
     about: 'À propos',
     toc: 'Table des matières',
+    faq: 'Foire aux questions',
   },
   'ja': {
     title: '再組版',
@@ -55,6 +60,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'タグ',
     about: '概要',
     toc: '目次',
+    faq: 'よくある質問',
   },
   'ko': {
     title: '재조판',
@@ -64,6 +70,7 @@ export const ui: Record<Language, Translation> = {
     tags: '태그',
     about: '소개',
     toc: '목차',
+    faq: '자주 묻는 질문',
   },
   'pl': {
     title: 'Przeskład',
@@ -73,6 +80,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Tagi',
     about: 'O stronie',
     toc: 'Spis treści',
+    faq: 'Najczęściej zadawane pytania',
   },
   'pt': {
     title: 'Retipografia',
@@ -82,6 +90,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Tags',
     about: 'Sobre',
     toc: 'Sumário',
+    faq: 'Perguntas frequentes',
   },
   'ru': {
     title: 'Переверстка',
@@ -91,6 +100,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Теги',
     about: 'О себе',
     toc: 'Оглавление',
+    faq: 'Часто задаваемые вопросы',
   },
   'zh': {
     title: '重新编排',
@@ -100,14 +110,16 @@ export const ui: Record<Language, Translation> = {
     tags: '标签',
     about: '关于',
     toc: '目录',
+    faq: '常见问题',
   },
   'zh-tw': {
-    title: '重新編排',
-    subtitle: '再現版式之美',
-    description: 'Retypeset是一款基於Astro框架的靜態部落格主題，中文名為重新編排。本主題以活版印字為設計靈感，通過建立全新的視覺規範，對所有頁面進行重新編排，打造紙質書頁般的閱讀體驗，再現版式之美。所見皆為細節，方寸盡顯優雅。',
+    title: "Andy's System",
+    subtitle: 'AI、工程團隊、Startup 的實戰經驗',
+    description: 'AI 工程、Startup 經營、技術領導力的實戰經驗分享。專注於 AI Agent、Developer Productivity、團隊管理。',
     posts: '文章',
     tags: '標籤',
     about: '關於',
     toc: '目錄',
+    faq: '常見問題',
   },
 }

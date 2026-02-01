@@ -3,6 +3,8 @@
  * FAQ - 視覺化的常見問題組件
  * 在文章底部顯示 FAQ，同時 Schema 由 ArticleSchema 組件處理
  */
+import { ui } from '@/i18n/ui'
+import { getPageInfo } from '@/utils/page'
 
 interface FAQ {
   question: string
@@ -14,11 +16,13 @@ interface Props {
 }
 
 const { faqs } = Astro.props
+const { currentLang } = getPageInfo(Astro.url.pathname)
+const currentUI = ui[currentLang as keyof typeof ui] ?? ui['en']
 ---
 
 {faqs.length > 0 && (
   <section class="faq-section mt-12">
-    <h2 class="text-1.5em font-bold mb-6">常見問題</h2>
+    <h2 class="text-1.5em font-bold mb-6">{currentUI.faq}</h2>
     <div class="faq-list">
       {faqs.map((faq, index) => (
         <details class="faq-item mb-4 border-b border-secondary/20 pb-4" open={index === 0}>

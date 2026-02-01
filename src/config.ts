@@ -11,7 +11,7 @@ export const themeConfig: ThemeConfig = {
     description:
       "AI 工程、Startup 經營、技術領導力的實戰經驗分享。專注於 AI Agent、Developer Productivity、團隊管理。",
     // use i18n title/subtitle/description from src/i18n/ui.ts instead of static ones above
-    i18nTitle: false, // true | false
+    i18nTitle: true, // true | false
     // author name
     author: "Andy Dai",
     // site url
