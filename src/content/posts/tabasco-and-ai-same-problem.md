@@ -1,10 +1,10 @@
 ---
-title: 我爸找不到果泥跟你用 AI 寫 code 是同一個問題
+title: 我爸找不到 Tabasco 跟你用 AI 寫 code 是同一個問題
 published: 2026-02-16
 description: 不管靠的是經驗還是 AI，只要跳過「先看清楚問題本身」這一步，就可能在錯的範圍裡找。找不到的時候，你的結論會是「東西不存在」，而不是「我可能找錯地方了」。
 tags: [ai-engineering, developer-productivity, problem-solving]
 lang: zh-tw
-abbrlink: fruit-puree-and-ai-same-problem
+abbrlink: tabasco-and-ai-same-problem
 toc: true
 ---
 
@@ -12,7 +12,7 @@ toc: true
 
 ## 一排一排掃的笨方法
 
-上週末去賣場幫寶寶買果泥。我爸之前來了好幾次都找不到，跟我說大概賣完了。
+上週末去賣場買 Tabasco。我爸之前來了好幾次都找不到，跟我說大概賣完了。
 
 我到了之後用最笨的方法——一排一排掃。不跳過、不猜、不靠經驗判斷「應該在哪個區域」。掃到大概七成的時候，我也開始想是不是真的賣完了。但既然決定用 sequential search，那就要全部掃完才能下結論。
 

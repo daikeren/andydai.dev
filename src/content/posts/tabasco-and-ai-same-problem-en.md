@@ -1,10 +1,10 @@
 ---
-title: My Dad Can't Find Baby Food and You Using AI to Code Are the Same Problem
+title: My Dad Can't Find Tabasco and You Using AI to Code Are the Same Problem
 published: 2026-02-16
 description: Whether you rely on experience or AI, if you skip the step of understanding the problem first, you end up searching in the wrong place. When you can't find the answer, you conclude "it doesn't exist" instead of "maybe I'm looking in the wrong spot."
 tags: [ai-engineering, developer-productivity, problem-solving]
 lang: en
-abbrlink: fruit-puree-and-ai-same-problem
+abbrlink: tabasco-and-ai-same-problem
 toc: true
 ---
 
@@ -12,7 +12,7 @@ toc: true
 
 ## The Dumb Way: Scanning Every Aisle
 
-Last weekend I went to the store to buy fruit puree for my baby. My dad had been there several times before and couldn't find it. He told me they were probably sold out.
+Last weekend I went to the store to buy Tabasco. My dad had been there several times before and couldn't find it. He told me they were probably sold out.
 
 When I got there, I used the dumbest method possible—scanning every single aisle. No skipping, no guessing, no relying on intuition about "which section it should be in." Around 70% through, I started wondering if they were really sold out. But since I'd committed to a sequential search, I had to scan everything before drawing a conclusion.
 
