@@ -19,6 +19,11 @@ const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const lang = currentLang === defaultLocale ? '' : `${currentLang}/`
 
+// hreflang: compute base path by stripping base and language prefix
+const afterBase = Astro.url.pathname.slice(base.length)
+const langPrefix = allLocales.find(l => l !== defaultLocale && afterBase.startsWith(`/${l}/`))
+const basePath = langPrefix ? afterBase.slice(`/${langPrefix}`.length) : afterBase
+
 // Site Configuration
 const { title, subtitle, description, i18nTitle, author, favicon } = themeConfig.site
 const { mode: defaultMode, light: { background: lightMode }, dark: { background: darkMode } } = themeConfig.color
@@ -69,25 +74,19 @@ const pageImage = postSlug
 <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
 <link rel="alternate" href={`${base}/rss.xml`} type="application/rss+xml" title="RSS Feed" />
 <link rel="alternate" href={`${base}/atom.xml`} type="application/atom+xml" title="Atom Feed" />
-{/* hreflang for posts with multiple language versions */}
-{postSlug && supportedLangs.length > 1 ? (
-  supportedLangs.map(lang => (
-    <link
-      rel="alternate"
-      href={`${Astro.url.origin}${base}${lang === defaultLocale ? '' : `/${lang}`}/posts/${postSlug}/`}
-      hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
-    />
-  ))
-) : (
-  /* hreflang for homepage and pages without multiple language versions */
-  allLocales.map(lang => (
-    <link
-      rel="alternate"
-      href={`${Astro.url.origin}${base}${lang === defaultLocale ? '' : `/${lang}/`}`}
-      hreflang={lang === 'zh-tw' ? 'zh-TW' : lang}
-    />
-  ))
-)}
+{/* hreflang: dynamically point to the corresponding URL for each locale */}
+{allLocales.map(l => (
+  <link
+    rel="alternate"
+    href={`${Astro.url.origin}${base}${l === defaultLocale ? '' : `/${l}`}${basePath}`}
+    hreflang={l === 'zh-tw' ? 'zh-TW' : l}
+  />
+))}
+<link
+  rel="alternate"
+  href={`${Astro.url.origin}${base}${basePath}`}
+  hreflang="x-default"
+/>
 
 <!-- Open Graph -->
 <meta property="og:type" content={postTitle ? 'article' : 'website'} />
