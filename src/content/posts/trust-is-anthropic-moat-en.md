@@ -100,7 +100,7 @@ When mission conflicts with business reality, mission yields. A real cult doesn'
 
 Time for a turn, because it's not that simple.
 
-There's a test called the [Bullshit Benchmark](https://petergpt.github.io/bullshit-benchmark/viewer/index.html), specifically designed to measure whether AI models can detect broken premises and refuse to answer nonsensical questions. As of February 2026, the top nine on the leaderboard are all Anthropic models. Claude 3 Opus rejects nonsensical questions 92% of the time. Gemini 1.5 Pro manages just 38%.
+There's a test called the [Bullshit Benchmark](https://petergpt.github.io/bullshit-benchmark/viewer/index.html), specifically designed to measure whether AI models can detect broken premises and refuse to answer nonsensical questions. As of February 2026, the top eight on the leaderboard are all Anthropic models. The #1 model, Claude Sonnet 4.6, rejects nonsensical questions 95% of the time. Gemini 3 Pro manages just 31%.
 
 This isn't coincidence. It's the direct product of Anthropic's constitutional AI and alignment methodology. Whatever you think of the company's business practices, on the dimension of model output—making AI honest, not overconfident, willing to admit uncertainty—they genuinely outperform their peers.
 

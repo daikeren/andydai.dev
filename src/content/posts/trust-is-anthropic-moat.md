@@ -100,7 +100,7 @@ Anthropic 的 moat 是信任。金融、醫療、政府這些高監管行業，�
 
 這裡要轉一個彎，因為事情沒有那麼簡單。
 
-有個叫 [Bullshit Benchmark](https://petergpt.github.io/bullshit-benchmark/viewer/index.html) 的測試，專門測 AI 模型能不能偵測 broken premises、能不能拒絕回答無意義的問題。截至 2026 年 2 月，排行榜前九名，全部是 Anthropic 的模型。Claude 3 Opus 對無意義問題的拒絕率 92%，Gemini 1.5 Pro 只有 38%。
+有個叫 [Bullshit Benchmark](https://petergpt.github.io/bullshit-benchmark/viewer/index.html) 的測試，專門測 AI 模型能不能偵測 broken premises、能不能拒絕回答無意義的問題。截至 2026 年 2 月，排行榜前八名全部是 Anthropic 的模型。第一名 Claude Sonnet 4.6 對無意義問題的拒絕率 95%，而 Gemini 3 Pro 只有 31%。
 
 這不是偶然。這是 Anthropic 的 constitutional AI 和 alignment 方法論的直接產物。不管你怎麼看這家公司的商業行為，他們在「模型產出」這個維度上——讓 AI 誠實、不過度自信、願意承認不確定性——確實做得比同行好。
 
