@@ -116,7 +116,7 @@ If the Bullshit Benchmark was the first layer of contrast, the Pentagon standoff
 
 Background: Anthropic had a \$200M contract with the Pentagon—the first company approved to deploy AI on classified networks. Anthropic held two red lines: no mass domestic surveillance, no fully autonomous weapons. The Pentagon demanded Anthropic open up to "all lawful use." Anthropic refused.
 
-Escalation came fast. On February 24, Defense Secretary Pete Hegseth met with Dario and threatened to invoke the Defense Production Act—a Korean War-era law—for forced requisition, or label Anthropic a "supply chain risk." That label is typically reserved for Chinese and Russian companies. Pentagon CTO Emil Michael publicly called Amodei "a liar who has a God-complex."
+Escalation came fast. On February 24, Defense Secretary Pete Hegseth met with Dario and threatened to invoke the Defense Production Act—a Korean War-era law—for forced requisition, or label Anthropic a "supply chain risk." That label is typically reserved for Chinese and Russian companies. Undersecretary of War Emil Michael publicly called Amodei "a liar who has a God-complex."
 
 On February 27, an ultimatum was set: respond by 5:01 PM ET or face consequences.
 
@@ -142,7 +142,7 @@ That evening, Altman sent an internal memo saying he wanted to "help de-escalate
 
 That night, [OpenAI announced a classified network deployment agreement with the Department of War](https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban). The conditions were exactly what Anthropic had insisted on: no mass surveillance, no autonomous weapons.
 
-Same Pentagon—threats and ultimatums for Anthropic, "displayed a deep respect for safety and a desire to partner" for OpenAI.
+Same Pentagon—threats and ultimatums for Anthropic, while Altman announced the deal saying the Pentagon "displayed a deep respect for safety and a desire to partner."
 
 Altman's moves were masterful. First, validate Anthropic's position—"we share their red lines." Then demonstrate he could do what Anthropic couldn't—reach an agreement with the government. Finally, call for the same terms for all companies, claiming moral high ground. Simultaneously appearing as peacemaker, industry leader, and the one more capable of working with government.
 

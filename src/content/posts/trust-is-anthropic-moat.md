@@ -116,7 +116,7 @@ Anthropic 的 moat 是信任。金融、醫療、政府這些高監管行業，�
 
 背景：Anthropic 跟 Pentagon 有一份 \$200M 的合約，是第一家被批准在 classified networks 上部署 AI 的公司。Anthropic 堅持兩條紅線——不用於大規模國內監控、不用於全自主武器。Pentagon 要求 Anthropic 開放「all lawful use」，Anthropic 拒絕了。
 
-接下來的升級很快。2 月 24 號，Defense Secretary Pete Hegseth 跟 Dario 會面，威脅動用 Defense Production Act——一個韓戰時代的法律——強制徵用，或者把 Anthropic 列為「supply chain risk」。這個標籤通常是保留給中俄公司的。Pentagon CTO Emil Michael 公開罵 Amodei 是「liar and has a God-complex」。
+接下來的升級很快。2 月 24 號，Defense Secretary Pete Hegseth 跟 Dario 會面，威脅動用 Defense Production Act——一個韓戰時代的法律——強制徵用，或者把 Anthropic 列為「supply chain risk」。這個標籤通常是保留給中俄公司的。Undersecretary of War Emil Michael 公開罵 Amodei 是「liar and has a God-complex」。
 
 2 月 27 號，設下最後通牒：下午 5:01 PM ET 前回應，否則後果自負。
 
@@ -142,7 +142,7 @@ Dario 發了公開聲明：「These threats do not change our position: we canno
 
 2 月 27 號晚間，[OpenAI 宣布跟 Department of War 達成 classified network 部署協議](https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban)。拿到的條件跟 Anthropic 堅持的完全一樣：禁止 mass surveillance、禁止 autonomous weapons。
 
-同一個 Pentagon——對 Anthropic 是威脅和最後通牒，對 OpenAI 是「displayed a deep respect for safety and a desire to partner」。
+同一個 Pentagon——對 Anthropic 是威脅和最後通牒，而 Altman 在宣布 deal 時說 Pentagon「displayed a deep respect for safety and a desire to partner」。
 
 Altman 的操作很漂亮。先 validate Anthropic 的立場——「we share their red lines」。再展示自己能做到 Anthropic 做不到的——跟政府達成協議。最後呼籲把同樣條件給所有公司，站上 moral high ground。同時看起來像 peacemaker、industry leader、比 Anthropic 更有能力跟政府合作的人。
 
