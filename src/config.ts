@@ -83,10 +83,10 @@ export const themeConfig: ThemeConfig = {
     // giscus
     // https://giscus.app/
     giscus: {
-      repo: "",
-      repoId: "",
-      category: "",
-      categoryId: "",
+      repo: "daikeren/andydai.dev",
+      repoId: "R_kgDOQojkCQ",
+      category: "Announcements",
+      categoryId: "DIC_kwDOQojkCc4C3cNf",
       mapping: "pathname",
       strict: "0",
       reactionsEnabled: "1",
