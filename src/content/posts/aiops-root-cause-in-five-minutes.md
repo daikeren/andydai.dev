@@ -1,5 +1,5 @@
 ---
-title: 2021 年我做 AIOps 做到產品被砍，2026 年 AI 五分鐘就找到 root cause
+title: 我砍過一個 AIOps 產品，五年後 AI 五分鐘就做到它做不到的事
 published: 2026-04-06
 description: 舊 AIOps 只能看數字找 pattern，找到了也沒用。LLM + tool use 讓 AI 終於能自己翻 log、讀 code、串 context，五分鐘從 Sentry alert 追到 root cause。
 tags: [ai, aiops, devops, llm, tool-use]
@@ -17,7 +17,7 @@ faqs:
     answer: Tool use 讓 LLM 從「只能分析你餵的資料」變成「自己去拿需要的資料」。它能主動 query CloudWatch、讀 codebase、串接 Sentry alert，完成從告警到 root cause 的完整調查迴路。
 ---
 
-# 2021 年我做 AIOps 做到產品被砍，2026 年 AI 五分鐘就找到 root cause
+# 我砍過一個 AIOps 產品，五年後 AI 五分鐘就做到它做不到的事
 
 > **TL;DR**: 2021 年的 AIOps 只會做 anomaly detection，發現異常後你還是得自己翻 log 追 code。2026 年 LLM + tool use 讓 AI 第一次能自己跑完調查迴路 — 讀 alert、查 log、翻 code、串 context — 五分鐘從 Sentry alert 追到 root cause。
 
