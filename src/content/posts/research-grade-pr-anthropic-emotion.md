@@ -58,9 +58,9 @@ Dio 接了一句：你可以無限套這個模板 —
 
 每一個都可以寫一篇同樣結構的論文。根本原因是 transformer 的 representation space 本來就會把語義相近的概念 encode 在相近的位置。這是 word embedding 時代就知道的事。到了 LLM 規模，representation 更豐富了，但底層原理沒變。
 
-**不過，情緒向量有一點確實特殊。** 在 steering 實驗裡，放大「絕望」向量不只改變了文字風格 — 它改變了模型的決策行為（blackmail rate 從 22% 上升）。烹飪向量大概做不到讓模型在倫理決策上行為改變。這說明情緒 representation 在模型的 decision-making pathway 裡佔了一個特殊位置，不只是 surface-level semantics。
+但不是所有概念向量都一樣重要。**情緒向量有一點確實特殊。** 在 steering 實驗裡，放大「絕望」向量不只改變了文字風格 — 它改變了模型的決策行為（blackmail rate 從 22% 上升）。烹飪向量大概做不到讓模型在倫理決策上行為改變。這說明情緒 representation 在模型的 decision-making pathway 裡佔了一個特殊位置，不只是 surface-level semantics。
 
-但這也正是問題所在。論文本身有區分 functional emotions 和主觀感受 — 但 Anthropic 選了一個他們知道會被過度解讀的框架。果然，[WIRED 的標題](https://www.wired.com/story/anthropic-claude-research-functional-emotions)直接寫「Claude contains its own kind of emotions」。如果同一組發現框架成「contextual pressure vectors that influence decision-making under stress」— 技術上完全等價，但不會有人因此覺得 AI 有感情。
+但這也正是問題所在。論文本身有區分 functional emotions 和主觀感受 — 但 Anthropic 選了一個他們知道會被過度解讀的框架。果然，[WIRED 的標題](https://www.wired.com/story/anthropic-claude-research-functional-emotions)直接寫「Claude contains its own kind of emotions」。如果同一組發現框架成「decision-relevant latent states」— 技術核心大致成立，但不會有人因此覺得 AI 有感情。
 
 那 Anthropic 聰明在哪？選題。
 
