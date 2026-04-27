@@ -1,4 +1,5 @@
 ---
+description: CTO and co-founder at Codeer.ai. Writes about AI, engineering teams, and startup execution.
 lang: en
 ---
 

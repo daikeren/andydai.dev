@@ -1,0 +1,29 @@
+---
+/**
+ * AboutPersonSchema - About 頁的 Person 結構化資料
+ */
+import { themeConfig } from '@/config'
+
+interface Props {
+  profileUrl: string
+  description: string
+}
+
+const { profileUrl, description } = Astro.props
+const { author } = themeConfig.site
+
+const sameAs = themeConfig.footer.links
+  .filter(link => ['GitHub', 'X', 'LinkedIn'].includes(link.name))
+  .map(link => link.url)
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  'name': author,
+  'url': profileUrl,
+  'description': description,
+  'sameAs': sameAs,
+}
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
