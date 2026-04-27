@@ -19,13 +19,13 @@ faqs:
 
 這幾週看到很多人在吵 AI provider「降智」，我一直都很不以為然。不是因為 provider 不能被懷疑，而是因為很多討論把四件事混在一起：impression、regression、behavior change、motive。這四件事一混，討論就很容易從分析變成心理劇。
 
-社群上那套話術我幾乎每隔一陣子就會看到一次：OpenAI 變笨了、Anthropic 偷偷降了、最近回答變差一定是在省算力，或者新 model 要出了，所以先把舊的弄弱一點。問題不是這些猜測永遠不可能是真的，而是很多人連現象都還沒定義，就已經開始判動機。
+社群上那套話術我幾乎每隔一陣子就會看到一次：OpenAI 變笨了、Anthropic 偷偷降智了、最近回答變差一定是在省算力，或者新 model 要出了，所以先把舊的弄弱一點。問題不是這些猜測永遠不可能是真的，而是很多人連現象都還沒定義，就已經開始判動機。
 
 很多 product regression，最早本來就是從 power users 的體感開始被注意到。問題不是體感沒價值，而是體感不能直接升級成動機判決。
 
-4/23 Anthropic 那篇 [postmortem](https://www.anthropic.com/engineering/april-23-postmortem) 只是讓我更想把這件事寫下來。大家嘴上在講「Claude 變笨了」，Anthropic 拆開來講的卻是三個不同的 product-layer 變更：default reasoning effort 從 `high` 調到 `medium`、一個 session / caching 相關 bug 讓 prior thinking 在不該被清掉的時候被清掉，還有一段為了減少 verbosity 加上的 prompt instruction。這不代表 Anthropic 一定完全沒問題。它只提醒了一件很基本的事：**體感變差**，和 **你已經知道原因與動機**，中間差很遠。
+4/23 Anthropic 那篇 [postmortem](https://www.anthropic.com/engineering/april-23-postmortem) 讓我更想把這件事寫下來。大家嘴上在講「Claude 變笨了」，Anthropic 拆開來講的卻是三個不同的 product-layer 變更：default reasoning effort 從 `high` 調到 `medium`、一個 session / caching 相關 bug 讓 prior thinking 在不該被清掉的時候被清掉，還有一段為了減少 verbosity 加上的 prompt instruction。這不代表 Anthropic 一定完全沒問題。它只提醒了一件很基本的事：**體感變差**，和 **你已經知道原因與動機**，中間差很遠。
 
-我自己每天都在用 Claude Code、各種 agent、各家 model。行為一變，我第一反應也是「是不是又變笨了」。但高頻使用一陣子之後，你很快就會發現，體感變差這件事背後混著很多不同東西：prompt 問得不好、context 已經髒了、tool schema 改了、wrapper 自己出問題，或者某個 task 剛好踩到 edge case。有時候才真的是 model 或 API layer 某種 regression。把這些東西全部混在一起講，後面只會越講越亂。
+我自己每天都在用 Claude Code/Codex、各種 agent、各家 model。行為一變，曾經我第一反應也是「是不是又變笨了」。但高頻使用一陣子之後，你很快就會發現，體感變差這件事背後混著很多不同東西：prompt 問得不好、context 已經髒了、tool schema 改了、wrapper 自己出問題，或者某個 task 剛好踩到 edge case。有時候才真的是 model 或 API layer 某種 regression。把這些東西全部混在一起講，後面只會越講越亂。
 
 ## 至少先分清楚四層
 
