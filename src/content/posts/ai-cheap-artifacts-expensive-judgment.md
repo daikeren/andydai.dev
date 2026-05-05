@@ -155,11 +155,11 @@ AI 是 organization spam generator。
 
 Daniel Miessler 那篇 [Most Companies Aren't Anywhere Near Ready for AI](https://danielmiessler.com/blog/most-companies-arent-ready-for-ai) 講到一個很重要的點：很多公司不是還沒買對 AI 工具，而是根本還沒有清楚到可以被 AI 幫忙。
 
-在這種狀態下，高層說「我們要導入 AI」，其實很像對著一團霧說：請幫我加速。
+在這種狀態下，高層說「我們要導入 AI」，其實很像對著一團混亂說：請幫我加速。
 
-但你加速一團霧，得到的不是更快的組織。
+但你加速一團混亂，得到的不是更快的組織。
 
-得到的是更快擴散的霧。
+得到的是更快擴散的混亂。
 
 所以 AI 不會平均提高所有公司的生產力。它比較可能提高 productivity dispersion。
 
