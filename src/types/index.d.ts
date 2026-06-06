@@ -25,12 +25,14 @@ export interface ThemeConfig {
       secondary: string
       background: string
       highlight: string
+      accent: string
     }
     dark: {
       primary: string
       secondary: string
       background: string
       highlight: string
+      accent: string
     }
   }
   global: {

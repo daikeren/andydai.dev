@@ -99,7 +99,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     faqs={post.data.faqs}
   />
   <article class="heti">
-    <div class="relative">
+    <header class="post-header">
       <!-- Go Back Button On Desktop -->
       <BackButton />
       <!-- Title -->
@@ -111,21 +111,20 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
           {post.data.title}
         </span>
       </h1>
-    </div>
-
-    <!-- Date -->
-    <div
-      id="post-date"
-      class="mb-17.2 block c-primary font-time"
-      transition:name={`time-${slug}${currentLang ? `-${currentLang}` : ''}`}
-      data-disable-theme-toggle-transition
-    >
-      <PostDate
-        date={post.data.published}
-        updatedDate={post.data.updated}
-        minutes={remarkPluginFrontmatter.minutes}
-      />
-    </div>
+      <!-- Date -->
+      <div
+        id="post-date"
+        class="post-meta font-time"
+        transition:name={`time-${slug}${currentLang ? `-${currentLang}` : ''}`}
+        data-disable-theme-toggle-transition
+      >
+        <PostDate
+          date={post.data.published}
+          updatedDate={post.data.updated}
+          minutes={remarkPluginFrontmatter.minutes}
+        />
+      </div>
+    </header>
     <!-- TOC -->
     {post.data.toc && <TOC headings={headings} />}
     <!-- Content -->
@@ -150,3 +149,28 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     </div>
   </article>
 </Layout>
+
+<style>
+  .post-header {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.1rem 0.9rem;
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    color: var(--ink-muted);
+  }
+  .post-meta::before {
+    content: "";
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 1px;
+    background: oklch(var(--un-preset-theme-colors-accent));
+  }
+</style>

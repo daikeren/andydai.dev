@@ -27,31 +27,34 @@ export const themeConfig: ThemeConfig = {
 
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START
   color: {
-    // default theme mode
-    mode: "auto", // light | dark | auto
+    // single theme — light only
+    mode: "light", // light | dark | auto
+    // Palette: near-neutral ink-on-paper ramp (faint warm, NOT cream) +
+    // one signal-red signature accent (the "red-pen / errata / candor" mark).
+    // oklch color picker: https://oklch.com/
     light: {
-      // primary color
-      // used for title, hover, etc
-      // oklch color picker: https://oklch.com/
-      primary: "oklch(25% 0.005 298)",
-      // secondary color
-      // used for post text
-      secondary: "oklch(40% 0.005 298)",
-      // background color
-      background: "oklch(96% 0.005 298)",
-      // highlight color
-      // used for navbar, selected text, etc
-      highlight: "oklch(0.93 0.195089 103.2532 / 0.5)", // rgba(255,235,0,0.5)
+      // primary color — headings, strong text, hover ink
+      primary: "oklch(0.24 0.012 50)",
+      // secondary color — long-form body text (≥4.5:1 on background)
+      secondary: "oklch(0.40 0.012 50)",
+      // background color — near-true off-white, faint warmth, not cream
+      background: "oklch(0.985 0.004 60)",
+      // highlight color — translucent accent wash for <mark>, selection, :target
+      highlight: "oklch(0.55 0.20 27 / 0.18)",
+      // accent color — links, active states, focus rings, precise details
+      accent: "oklch(0.505 0.18 27)",
     },
     dark: {
       // primary color
-      primary: "oklch(92% 0.005 298)",
+      primary: "oklch(0.93 0.006 60)",
       // secondary color
-      secondary: "oklch(77% 0.005 298)",
-      // background color
-      background: "oklch(22% 0.005 298)",
+      secondary: "oklch(0.74 0.008 60)",
+      // background color — deep near-black, faint warmth, not pure black
+      background: "oklch(0.165 0.006 55)",
       // highlight color
-      highlight: "oklch(0.93 0.195089 103.2532 / 0.2)", // rgba(255,235,0,0.2)
+      highlight: "oklch(0.70 0.17 30 / 0.24)",
+      // accent color
+      accent: "oklch(0.715 0.17 30)",
     },
   },
   // COLOR SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END

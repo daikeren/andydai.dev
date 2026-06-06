@@ -1,9 +1,19 @@
+:root {
+  --font-sans: "Mona Sans", system-ui, -apple-system, "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Low-emphasis metadata ink — quieter than body, still AA (5.8:1 on bg) */
+  --ink-muted: oklch(0.50 0.012 50);
+}
+
 html {
   --at-apply: 'bg-background c-secondary antialiased';
   scrollbar-width: thin;
   scrollbar-color: oklch(var(--un-preset-theme-colors-secondary) / 0.25) transparent;
   scrollbar-gutter: stable;
   text-autospace: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
 }
 
 /* Fix Flash Issue On iOS */
@@ -14,23 +24,47 @@ body {
 body::selection {
   --at-apply: 'bg-highlight';
 }
+*::selection {
+  --at-apply: 'bg-highlight';
+}
 
-/* Highlight Hover Animation >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-.highlight-static,
-.highlight-hover {
-  --at-apply: 'relative inline-block';
+/* Accessible focus ring (keyboard only) */
+:focus-visible {
+  outline: 2px solid oklch(var(--un-preset-theme-colors-accent));
+  outline-offset: 3px;
+  border-radius: 2px;
 }
-.highlight-static::after,
-.highlight-hover::after {
-  --at-apply: 'absolute left-0 z--1 h-0.5em w-full bg-highlight';
-  content: '';
+
+/* Honor reduced-motion: neutralize transitions/animations everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-.highlight-static::after,
-.highlight-hover:hover::after {
-  --at-apply: 'origin-bottom-left scale-x-100';
+
+/* Shared page heading (listing surfaces) */
+.page-head {
+  margin-bottom: 2.4rem;
 }
-.highlight-hover::after {
-  --at-apply: 'origin-bottom-right scale-x-0 transition-transform ease-out lg:duration-300';
+.page-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 1.4rem + 1.3vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: oklch(var(--un-preset-theme-colors-primary));
+  text-wrap: balance;
+}
+.page-sub {
+  margin: 0.85rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
 }
 
 /* Heading Anchor Link >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */

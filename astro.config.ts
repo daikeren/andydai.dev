@@ -82,11 +82,9 @@ export default defineConfig({
       excludeLangs: ['mermaid'],
     },
     shikiConfig: {
+      // Single light theme (site is light-only)
       // Available themes: https://shiki.style/themes
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark',
-      },
+      theme: 'github-light',
     },
   },
   vite: {

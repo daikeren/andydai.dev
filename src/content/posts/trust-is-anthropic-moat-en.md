@@ -10,8 +10,6 @@ toc: true
 
 > **TL;DR**: Anthropic is the only independent AI company spanning all three major clouds, banking on trust as its moat. But from a \$1.5B copyright settlement to selectively weaponizing safety narratives against competitors to having the Pentagon standoff's results harvested by Sam Altman—corporate honesty and model honesty are two entirely different things.
 
-# Trust Is Anthropic's Moat—Until You Start Verifying
-
 On February 27, 2026, [OpenAI announced \$110B in funding](https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/). The number alone was staggering, but the detail that stopped me was this: Amazon put in \$50B.
 
 Amazon investing in OpenAI meant AWS became the exclusive third-party cloud provider for OpenAI's enterprise platform Frontier. I did what any AI startup CTO would do—pulled up the mental map of cloud platforms and reshuffled:

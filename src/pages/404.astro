@@ -3,18 +3,54 @@ import Layout from '@/layouts/Layout.astro'
 ---
 
 <Layout>
-  <!-- Decorative Line -->
-  <div class="uno-decorative-line" />
-  <!-- Page Not Found -->
-  <h3 class="mt--1.3 flex flex-col text-8 c-primary font-bold leading-1.2em font-navbar lg:text-9">
-    <span>PAGE</span>
-    <span>NOT</span>
-    <span>FOUND</span>
-  </h3>
-  <p class="mt-3.6 flex flex-col text-3.6 leading-1.4em font-navbar lg:(mt-4 text-4)">
-    <span>It looks like the page you're looking for</span>
-    <span>does not exist or has been moved.</span>
-  </p>
-  <!-- Unused Div -->
-  <div class="" />
+  <div class="notfound">
+    <p class="nf-code font-time">404</p>
+    <h1 class="nf-title">Page not found</h1>
+    <p class="nf-text">The page you're looking for doesn't exist or has moved.</p>
+    <a class="nf-home" href="/">Back to all posts</a>
+  </div>
 </Layout>
+
+<style>
+  .notfound {
+    padding-top: 1rem;
+  }
+  .nf-code {
+    margin: 0 0 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+  .nf-title {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(2.1rem, 1.6rem + 2.4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+    color: oklch(var(--un-preset-theme-colors-primary));
+    text-wrap: balance;
+  }
+  .nf-text {
+    margin: 1rem 0 0;
+    max-width: 36ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: oklch(var(--un-preset-theme-colors-secondary));
+  }
+  .nf-home {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-weight: 550;
+    color: oklch(var(--un-preset-theme-colors-primary));
+    text-decoration: underline;
+    text-decoration-color: oklch(var(--un-preset-theme-colors-accent) / 0.5);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+    transition: color 0.18s ease-out, text-decoration-color 0.18s ease-out;
+  }
+  .nf-home:hover {
+    color: oklch(var(--un-preset-theme-colors-accent));
+    text-decoration-color: oklch(var(--un-preset-theme-colors-accent));
+  }
+</style>

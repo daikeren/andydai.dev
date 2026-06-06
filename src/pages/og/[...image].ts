@@ -46,8 +46,9 @@ export const { getStaticPaths, GET } = OGImageRoute({
       },
     },
     fonts: [
-      './public/fonts/NotoSansSC-Bold.otf',
-      './public/fonts/NotoSansSC-Regular.otf',
+      // Build-only fonts kept outside public/ so the 16MB OTFs don't ship to dist
+      './fonts/NotoSansSC-Bold.otf',
+      './fonts/NotoSansSC-Regular.otf',
     ],
     bgGradient: [[242, 241, 245]],
   }),

@@ -21,19 +21,18 @@ const currentUI = ui[currentLang as keyof typeof ui] ?? ui['en']
 ---
 
 {faqs.length > 0 && (
-  <section class="faq-section mt-12">
-    <h2 class="text-1.5em font-bold mb-6">{currentUI.faq}</h2>
+  <section class="faq-section">
+    <h2 class="faq-heading">{currentUI.faq}</h2>
     <div class="faq-list">
       {faqs.map((faq, index) => (
-        <details class="faq-item mb-4 border-b border-secondary/20 pb-4" open={index === 0}>
-          <summary class="faq-question cursor-pointer font-medium text-1.1em py-2 list-none">
-            <span class="inline-flex items-center gap-2">
-              <span class="faq-icon text-primary">Q.</span>
-              {faq.question}
-            </span>
+        <details class="faq-item" open={index === 0}>
+          <summary class="faq-question">
+            <span class="faq-marker" aria-hidden="true">Q</span>
+            <span class="faq-q-text">{faq.question}</span>
           </summary>
-          <div class="faq-answer mt-3 pl-6 c-secondary">
-            <span class="text-primary font-medium">A.</span> {faq.answer}
+          <div class="faq-answer">
+            <span class="faq-marker faq-marker-a" aria-hidden="true">A</span>
+            <span>{faq.answer}</span>
           </div>
         </details>
       ))}
@@ -42,15 +41,57 @@ const currentUI = ui[currentLang as keyof typeof ui] ?? ui['en']
 )}
 
 <style>
-  .faq-item summary::-webkit-details-marker {
+  .faq-section {
+    margin-top: 3.25rem;
+  }
+
+  .faq-heading {
+    margin: 0 0 1.4rem;
+    font-size: 1.42rem;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    color: oklch(var(--un-preset-theme-colors-primary));
+  }
+
+  .faq-item {
+    padding: 1rem 0;
+    border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.14);
+  }
+  .faq-item:last-child {
+    border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.14);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+    color: oklch(var(--un-preset-theme-colors-primary));
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question::before {
     display: none;
   }
 
-  .faq-item[open] summary {
-    color: var(--c-primary);
+  .faq-marker {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+  .faq-marker-a {
+    color: var(--ink-muted);
   }
 
-  .faq-question:hover {
-    color: var(--c-primary);
+  .faq-answer {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0.8rem;
+    color: oklch(var(--un-preset-theme-colors-secondary));
   }
 </style>

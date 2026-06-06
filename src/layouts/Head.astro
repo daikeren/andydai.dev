@@ -14,7 +14,7 @@ interface Props {
 }
 
 // Props and Language
-const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
+const { postTitle, postDescription, postSlug } = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const lang = currentLang === defaultLocale ? '' : `${currentLang}/`
@@ -62,11 +62,8 @@ const pageImage = postSlug
 <meta name="theme-color" content={metaTheme} />
 
 <!-- Preload -->
-<link rel="preload" href={`${base}/fonts/EarlySummer-VF-Split/EarlySummer-VF-Subset.woff2`} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={`${base}/fonts/Snell-Black-SF.woff2`} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={`${base}/fonts/Snell-Bold-SF.woff2`} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={`${base}/fonts/STIX-VF.woff2`} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={`${base}/fonts/STIX-Italic-VF.woff2`} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={`${base}/fonts/MonaSans-latin-normal.woff2`} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={`${base}/fonts/JetBrainsMono-latin-normal.woff2`} as="font" type="font/woff2" crossorigin />
 {katexEnabled && <link rel="stylesheet" href={katexCSS} media="print" onload={`this.media='all'`} />}
 
 <!-- Site Links -->
@@ -106,45 +103,14 @@ const pageImage = postSlug
 <!-- Global View Transition -->
 <ClientRouter fallback="none" />
 
-<!-- Theme Toggle -->
+<!-- Motion Preference (single light theme; no theme toggle) -->
 <script
   is:inline
   define:vars={{
-    defaultMode,
-    lightMode,
-    darkMode,
     reduceMotion,
  }}
 >
 (function () {
-  // Check if current theme is dark
-  // Priority: localStorage theme > default theme > system preference
-  function isCurrentDark() {
-    const currentTheme = localStorage.getItem('theme')
-    if (currentTheme) {
-      return currentTheme === 'dark'
-    }
-
-    if (defaultMode !== 'auto') {
-      return defaultMode === 'dark'
-    }
-
-    // If defaultMode is auto, follow system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
-
-  // Initialize theme
-  function initTheme(doc = document) {
-    const isDark = isCurrentDark()
-    doc.documentElement.classList.toggle('dark', isDark)
-
-    // Update meta theme-color tag
-    const metaThemeColor = doc.head.querySelector('meta[name="theme-color"]')
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', isDark ? darkMode : lightMode)
-    }
-  }
-
   // Check and init motion preference
   // Condition: theme config || system preference || browser capability
   function initMotionPref(doc = document) {
@@ -155,14 +121,10 @@ const pageImage = postSlug
     doc.documentElement.classList.toggle('reduce-motion', shouldReduceMotion)
   }
 
-  // Update theme before page transition to prevent flashing
   document.addEventListener('astro:before-swap', ({ newDocument }) => {
-    initTheme(newDocument)
     initMotionPref(newDocument)
   })
 
-  // Initialize theme on first load
-  initTheme()
   initMotionPref()
 })()
 </script>

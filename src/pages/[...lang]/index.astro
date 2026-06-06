@@ -17,19 +17,41 @@ const postsByYear = await getPostsByYear(currentLang)
 ---
 
 <Layout>
-  <!-- Pinned Posts -->
-  {pinnedPosts.length > 0 && (
-    <section class="mb-7.5">
-      <div class="uno-decorative-line" />
-      <PostList posts={pinnedPosts} lang={currentLang} pinned={true} />
-    </section>
-  )}
+  <div class="index">
+    {pinnedPosts.length > 0 && (
+      <section class="index-group">
+        <PostList posts={pinnedPosts} lang={currentLang} pinned={true} />
+      </section>
+    )}
 
-  <!-- Regular Posts -->
-  {[...postsByYear.entries()].map(([_year, posts]) => (
-    <section class="mb-7.5">
-      <div class="uno-decorative-line" />
-      <PostList posts={posts} lang={currentLang} />
-    </section>
-  ))}
+    {[...postsByYear.entries()].map(([year, posts]) => (
+      <section class="index-group">
+        <h2 class="index-year font-time">{year}</h2>
+        <PostList posts={posts} lang={currentLang} />
+      </section>
+    ))}
+  </div>
 </Layout>
+
+<style>
+  .index-group + .index-group {
+    margin-top: 3rem;
+  }
+
+  .index-year {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .index-year::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: oklch(var(--un-preset-theme-colors-secondary) / 0.13);
+  }
+</style>

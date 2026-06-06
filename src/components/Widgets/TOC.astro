@@ -1,6 +1,5 @@
 ---
 import type { MarkdownHeading } from 'astro'
-import TocIcon from '@/assets/icons/toc-icon.svg'
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
 
@@ -16,170 +15,106 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
 ---
 
 {filteredHeadings.length > 0 && (
-  // TOC Container
-  <div
-    id="toc-container"
-    class="mb-6 uno-round-border bg-secondary/5 2xl:(fixed left-0 top-44.5 max-w-[min(calc(50vw-38rem),13rem)] border-none bg-secondary/0)"
-  >
-    {/* Hidden Checkbox */}
-    <input
-      type="checkbox"
-      id="toc-toggle"
-      hidden
-    />
-    {/* TOC Toggle */}
-    <div class="relative h-12 w-full">
-      <label
-        for="toc-toggle"
-        class="absolute inset-0 flex cursor-pointer items-center 2xl:(static flex c-secondary/60 transition-colors ease-out hover:c-primary)"
-      >
-        {/* Title on Mobile */}
-        <span id="toc-mobile-text">
-          {currentUI.toc}
-        </span>
-
-        {/* Icon on Desktop */}
-        <TocIcon
-          id="toc-desktop-icon"
-          aria-hidden="true"
-          class="ml-4 hidden aspect-square w-4.2 2xl:(mt-4 block origin-center active:scale-90!)"
-          fill="currentColor"
-        />
-      </label>
-    </div>
-
-    {/* Expandable Content Wrapper with Accordion Animation */}
-    <div id="toc-accordion-wrapper">
-      <nav
-        id="toc-accordion-content"
-        aria-label="Table of Contents"
-      >
-        {/* TOC List */}
-        <ul id="toc-links-list">
-          {filteredHeadings.map(heading => (
-            <li
-              class:list={{
-                'ml-0': heading.depth === 2,
-                'ml-4': heading.depth === 3,
-                'ml-8': heading.depth === 4,
-              }}
-            >
-              <a
-                href={`#${heading.slug}`}
-                class:list={[
-                  { 'no-heti toc-links-h2': heading.depth === 2 },
-                  { 'no-heti toc-links-h3': heading.depth === 3 },
-                  { 'no-heti toc-links-h4': heading.depth === 4 },
-                ]}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  </div>
+  <details id="toc" class="toc no-heti" open>
+    <summary class="toc-summary">
+      <span class="toc-label">{currentUI.toc}</span>
+    </summary>
+    <nav aria-label="Table of Contents">
+      <ul id="toc-links-list" class="toc-list">
+        {filteredHeadings.map(heading => (
+          <li
+            class:list={[
+              'toc-item',
+              { 'is-h2': heading.depth === 2 },
+              { 'is-h3': heading.depth === 3 },
+              { 'is-h4': heading.depth === 4 },
+            ]}
+          >
+            <a href={`#${heading.slug}`} class="toc-link">{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </details>
 )}
 
-<!-- Override heti default styles  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
 <style>
-#toc-mobile-text {
-  --at-apply: 'ml-4 font-semibold 2xl:hidden';
-}
-#toc-links-list {
-  --at-apply: 'mb-2.5 mt-1 list-none pl-0 2xl:(mb-1 space-y-1) space-y-1.1';
-  scroll-target-group: auto;
-}
-a:target-current {
-    --at-apply: '2xl:(c-primary font-medium)';
-}
-.toc-links-h2, .toc-links-h3, .toc-links-h4 {
-  --at-apply: 'text-balance text-sm font-normal no-underline after:bottom-0.15em 2xl:(text-3.2 c-secondary/80 hover:c-primary hover:font-medium)';
-  transition: color 0.15s ease-out, font-weight 0.15s ease-out;
-}
+  .toc {
+    margin: 0 0 2.75rem;
+    padding: 0.9rem 0 1.05rem;
+    border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.16);
+    border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.16);
+  }
 
-/* Overflow and Scrollbar */
-#toc-toggle:checked ~ #toc-accordion-wrapper #toc-accordion-content {
-  --at-apply: 'overflow-y-auto 2xl:overflow-hidden';
-}
-#toc-accordion-content {
-  --at-apply: 'max-h-59 overflow-hidden pl-4 pr-6 2xl:(max-h-[calc(100vh-27.5rem)] overflow-y-auto scrollbar-hidden)';
-  scrollbar-width: thin;
-  scrollbar-color: oklch(var(--un-preset-theme-colors-secondary) / 0.15) transparent;
-}
-#toc-accordion-content::-webkit-scrollbar {
-  --at-apply: 'hidden';
-}
+  .toc-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .toc-summary::-webkit-details-marker {
+    display: none;
+  }
+  .toc-summary::before {
+    display: none;
+  }
 
-/* Mobile Initial State */
-#toc-accordion-wrapper {
-  --at-apply: 'grid rows-[0fr]';
-  transition: grid-template-rows 0.3s ease-in-out;
-}
-#toc-toggle:checked ~ #toc-accordion-wrapper {
-  --at-apply: 'rows-[1fr]';
-}
+  .toc-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
 
-/* Desktop Initial State */
-#toc-accordion-wrapper {
-  --at-apply: '2xl:rows-[1fr]';
-}
-#toc-toggle:checked ~ #toc-accordion-wrapper {
-  --at-apply: '2xl:rows-[0fr]';
-}
+  .toc-list {
+    margin: 0.95rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .toc-item {
+    margin: 0;
+    line-height: 1.5;
+  }
+  .toc-item + .toc-item {
+    margin-top: 0.5rem;
+  }
+  .toc-item.is-h3 {
+    margin-left: 1.1rem;
+  }
+  .toc-item.is-h4 {
+    margin-left: 2.2rem;
+  }
+
+  .toc-link {
+    display: inline-block;
+    font-size: 0.88rem;
+    color: oklch(var(--un-preset-theme-colors-secondary));
+    text-decoration: none;
+    text-wrap: pretty;
+    transition: color 0.16s ease-out;
+  }
+  .is-h2 > .toc-link {
+    counter-increment: toc;
+  }
+  .is-h2 > .toc-link::before {
+    content: counter(toc, decimal-leading-zero);
+    margin-right: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+  .toc-link:hover {
+    color: oklch(var(--un-preset-theme-colors-primary));
+  }
+  /* Active section (progressive enhancement where supported) */
+  #toc-links-list a:target-current {
+    color: oklch(var(--un-preset-theme-colors-accent));
+    font-weight: 550;
+  }
 </style>
-
-<script>
-const is2xl = window.matchMedia('(min-width: 1536px)')
-
-let ticking = false
-let lastLink: Element | null = null
-
-// Find and scroll to the active link
-function scrollToActiveLink() {
-  const tocList = document.getElementById('toc-links-list')
-  if (!tocList) {
-    ticking = false
-    return
-  }
-
-  const activeLink = tocList.querySelector('a:target-current')
-  if (activeLink && activeLink !== lastLink) {
-    activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    lastLink = activeLink
-  }
-
-  ticking = false
-}
-
-// Throttle scroll events
-function handleScroll() {
-  if (!ticking && is2xl.matches) {
-    window.requestAnimationFrame(scrollToActiveLink)
-    ticking = true
-  }
-}
-
-// Initialize scroll listener
-function setupAutoScroll() {
-  ticking = false
-  lastLink = null
-
-  const tocList = document.getElementById('toc-links-list')
-  if (!tocList || !CSS.supports('selector(:target-current)')) {
-    return
-  }
-
-  document.addEventListener('scroll', handleScroll, { passive: true })
-}
-
-// Cleanup listener and reset state
-function cleanupAutoScroll() {
-  document.removeEventListener('scroll', handleScroll)
-  lastLink = null
-}
-
-document.addEventListener('astro:page-load', setupAutoScroll)
-document.addEventListener('astro:before-swap', cleanupAutoScroll)
-</script>

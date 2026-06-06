@@ -29,20 +29,30 @@ const supportedLangs = await getTagSupportedLangs(tag)
 ---
 
 <Layout supportedLangs={supportedLangs}>
-  <!-- Decorative Line -->
-  <div class="uno-decorative-line" />
-  <!-- Tag List -->
-  <TagList
-    tags={allTags}
-    currentTag={tag}
+  <header class="page-head">
+    <h2 class="page-title">#{tag}</h2>
+  </header>
+
+  <!-- Posts List -->
+  <PostList
+    posts={posts}
     lang={currentLang}
   />
 
-  <!-- Posts List -->
-  <div class="mt-10.5">
-    <PostList
-      posts={posts}
+  <!-- Browse other tags -->
+  <nav class="other-tags" aria-label="All tags">
+    <TagList
+      tags={allTags}
+      currentTag={tag}
       lang={currentLang}
     />
-  </div>
+  </nav>
 </Layout>
+
+<style>
+  .other-tags {
+    margin-top: 3.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.14);
+  }
+</style>
