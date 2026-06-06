@@ -17,8 +17,6 @@ faqs:
     answer: Tool use 讓 LLM 從「只能分析你餵的資料」變成「自己去拿需要的資料」。它能主動 query CloudWatch、讀 codebase、串接 Sentry alert，完成從告警到 root cause 的完整調查迴路。
 ---
 
-# 我砍過一個 AIOps 產品，五年後 AI 五分鐘就做到之前做不到的事
-
 > **TL;DR**: 2021 年的 AIOps 只會做 anomaly detection，發現異常後你還是得自己翻 log 追 code。2026 年 LLM + tool use 讓 AI 能自己跑完調查迴路 — 讀 alert、查 log、翻 code、串 context — 五分鐘從 Sentry alert 追到 root cause。
 
 2021 年，我在前公司做了一個 AIOps 產品。

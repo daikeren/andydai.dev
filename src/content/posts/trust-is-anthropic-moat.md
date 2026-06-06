@@ -10,8 +10,6 @@ toc: true
 
 > **TL;DR**: Anthropic 是唯一橫跨三大雲的獨立 AI 公司，靠 trust 當護城河。但從訓練資料侵權和解、選擇性使用 safety narrative 打擊競爭對手、到 Pentagon 對峙事件被 Sam Altman 收割成果——公司層面的 honesty 和模型層面的 honesty 是兩件完全不同的事。
 
-# Trust 是 Anthropic 的 Moat——直到你開始驗證
-
 2026 年 2 月 27 號， [OpenAI 宣布了 \$110B 的融資](https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/)。這個數字本身已經夠誇張了，但真正讓我停下來的是其中一個細節：Amazon 出了 \$50B。
 
 Amazon 投 OpenAI，意味著 AWS 成為 OpenAI enterprise 平台 Frontier 的 exclusive third-party cloud provider。我做了一下 AI startup 的 CTO 會做的事——打開腦中的雲平台版圖，重新排一次：

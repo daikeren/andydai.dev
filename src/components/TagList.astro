@@ -11,27 +11,57 @@ interface Props {
 const { tags, currentTag = '', lang } = Astro.props
 ---
 
-<div class="no-heti flex flex-wrap gap-x-3 gap-y-3.2">
+<div class="no-heti tag-list">
   {tags.map(tag => (
     <a
       href={getTagPath(tag, lang)}
-      class:list={[
-        'relative inline-block border border-secondary/25 rounded-full px-3.2 py-0.7 ring-secondary/80',
-        'transition-[colors,box-shadow] ease-out hover:(border-secondary/80 c-primary font-medium ring-0.2)',
-        currentTag === tag
-          ? 'border-secondary/80 c-primary font-medium ring-0.2'
-          : 'ring-0',
-      ]}
+      class:list={['tag', { 'is-current': currentTag === tag }]}
     >
-      <span class="absolute inset-0 flex items-center justify-center whitespace-nowrap transition-font-weight">
-        {tag}
-      </span>
-      <span
-        class="inline-block font-medium opacity-0"
-        aria-hidden="true"
-      >
-        {tag}
-      </span>
+      {tag}
     </a>
   ))}
 </div>
+
+<style>
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.8rem;
+    border: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.22);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 450;
+    letter-spacing: 0.01em;
+    color: oklch(var(--un-preset-theme-colors-secondary));
+    text-decoration: none;
+    transition:
+      color 0.16s ease-out,
+      border-color 0.16s ease-out,
+      background-color 0.16s ease-out;
+  }
+  .tag::before {
+    content: "#";
+    margin-right: 0.12em;
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+
+  .tag:hover {
+    color: oklch(var(--un-preset-theme-colors-primary));
+    border-color: oklch(var(--un-preset-theme-colors-accent) / 0.55);
+  }
+  .tag.is-current {
+    color: oklch(var(--un-preset-theme-colors-accent));
+    border-color: oklch(var(--un-preset-theme-colors-accent) / 0.55);
+    background: oklch(var(--un-preset-theme-colors-accent) / 0.08);
+  }
+  .tag.is-current::before {
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+</style>

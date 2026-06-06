@@ -30,33 +30,30 @@ interface Props {
 const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
 const { isPost } = getPageInfo(Astro.url.pathname)
 const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'font-sans'
-const MarginBottom = isPost && themeConfig.comment.enabled
-  ? 'mb-10' // Post page with comment
-  : 'mb-12' // Other pages without comment
 ---
 
 <html
   lang={Astro.currentLocale}
-  class:list={[
-    fontStyle,
-    isPost ? 'scroll-smooth' : '',
-  ]}
+  class:list={[fontStyle, isPost ? 'scroll-smooth' : '']}
 >
   <Head {postTitle} {postDescription} {postSlug} {supportedLangs} />
   <body>
-    <div
-      class="mx-auto max-w-205.848 min-h-vh w-full min-h-dvh"
-      p="x-[min(7.25vw,3.731rem)] y-10"
-      lg="mx-[max(5.75rem,calc(50vw-34.25rem))] my-20 max-w-[min(calc(75vw-16rem),44rem)] min-h-full p-0"
-    >
-      <Header />
-      <Navbar />
-      <main class={MarginBottom}>
+    <div class="page-shell">
+      <aside class="masthead">
+        <Header />
+        <div class="masthead-controls">
+          <Navbar />
+          <Button supportedLangs={supportedLangs} />
+        </div>
+      </aside>
+
+      <main class="column">
         <slot />
       </main>
+
       <Footer />
     </div>
-    <Button supportedLangs={supportedLangs} />
+
     <SoundEffect />
     <CodeCopyButton />
     <GithubCard />
@@ -64,3 +61,82 @@ const MarginBottom = isPost && themeConfig.comment.enabled
     <ImageZoom />
   </body>
 </html>
+
+<style>
+  /* --- Mobile / tablet: single column, masthead on top, site info at the bottom --- */
+  .page-shell {
+    --pad-inline: clamp(1.4rem, 7vw, 3.25rem);
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: var(--pad-inline);
+    padding-block: 2.75rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.75rem;
+  }
+
+  /* Mobile: nav sits left, theme/lang controls sit right on the same row */
+  .masthead-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .column {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* --- Desktop: sticky identity rail + reading column --- */
+  @media (min-width: 1024px) {
+    .page-shell {
+      --rail: 13rem;
+      --gap: clamp(2.5rem, 5vw, 5rem);
+      --measure: 42rem;
+      --edge: clamp(3.5rem, 9vh, 5.5rem);
+      max-width: none;
+      margin-inline: 0;
+      padding: 0;
+      display: grid;
+      column-gap: var(--gap);
+      grid-template-columns:
+        [rail] var(--rail)
+        [main] minmax(0, var(--measure));
+      grid-template-rows: 1fr auto;
+      justify-content: center;
+      align-items: start;
+    }
+
+    .masthead {
+      grid-column: rail;
+      grid-row: 1;
+      position: sticky;
+      top: var(--edge);
+      margin-bottom: 0;
+      gap: 2.25rem;
+    }
+
+    /* Stack nav above the controls in the rail */
+    .masthead-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1.75rem;
+    }
+
+    .column {
+      grid-column: main;
+      grid-row: 1 / 3;
+      padding-block: var(--edge);
+    }
+  }
+</style>
