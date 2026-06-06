@@ -1,4 +1,5 @@
 ---
+description: Codeer.ai 的 CTO 暨共同創辦人，分享 AI、工程團隊與 Startup 的實戰經驗。
 lang: zh-tw
 ---
 
