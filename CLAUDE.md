@@ -2,6 +2,12 @@
 
 Astro-based personal blog with i18n support (zh-tw + en).
 
+## Writing
+
+- **`PRODUCT.md`** — positioning, readers, brand personality. Read before any content or design work.
+- **`STYLE.md`** — Andy's sentence-level writing style guide (voice, structure, signature moves, anti-patterns, revision checklist). Read before drafting or editing any post.
+- **`/write-post` skill** (`.agents/skills/write-post/`, symlinked into `.claude/skills/`) — runs the Interview → Draft → Review workflow for new posts and English versions. Invoke for any blog writing task.
+
 ## Commands
 
 ```bash
