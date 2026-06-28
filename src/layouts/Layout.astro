@@ -21,13 +21,22 @@ import '@/styles/markdown.css'
 import '@/styles/transition.css'
 
 interface Props {
+  pageTitle?: string
+  pageDescription?: string
   postTitle?: string
   postDescription?: string
   postSlug?: string
   supportedLangs?: Language[]
 }
 
-const { postTitle, postDescription, postSlug, supportedLangs = [] } = Astro.props
+const {
+  pageTitle,
+  pageDescription,
+  postTitle,
+  postDescription,
+  postSlug,
+  supportedLangs = [],
+} = Astro.props
 const { isPost } = getPageInfo(Astro.url.pathname)
 const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'font-sans'
 ---
@@ -36,7 +45,7 @@ const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'fon
   lang={Astro.currentLocale}
   class:list={[fontStyle, isPost ? 'scroll-smooth' : '']}
 >
-  <Head {postTitle} {postDescription} {postSlug} {supportedLangs} />
+  <Head {pageTitle} {pageDescription} {postTitle} {postDescription} {postSlug} {supportedLangs} />
   <body>
     <div class="page-shell">
       <aside class="masthead">

@@ -78,12 +78,13 @@ interface Props {
 const { post, supportedLangs } = Astro.props
 const currentLang = getLangFromLocale(Astro.currentLocale)
 const slug = post.data.abbrlink || post.id
+const seoTitle = post.data.seoTitle || post.data.title
 const description = getPostDescription(post, 'meta')
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 ---
 
 <Layout
-  postTitle={post.data.title}
+  postTitle={seoTitle}
   postDescription={description}
   postSlug={slug}
   supportedLangs={supportedLangs}

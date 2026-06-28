@@ -16,9 +16,16 @@ const currentLang = getLangFromLocale(Astro.currentLocale)
 const allTags = await getAllTags(currentLang)
 
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
+const pageDescription = currentLang === 'zh-tw'
+  ? '瀏覽 Andy\'s System 的文章標籤，從 AI 工具實戰、developer productivity、工程團隊管理到 startup 產品決策，快速找到相關主題與系列文章，追蹤 Andy Dai 長期觀察的脈絡。'
+  : 'Browse Andy\'s System tags across AI engineering, developer productivity, engineering leadership, startup execution, and the practical trade-offs behind adopting new tools.'
 ---
 
-<Layout>
+<Layout
+  pageTitle={`${currentUI.tags} | ${currentUI.title}`}
+  pageDescription={pageDescription}
+  supportedLangs={allLocales}
+>
   <header class="page-head">
     <h2 class="page-title">{currentUI.tags}</h2>
   </header>

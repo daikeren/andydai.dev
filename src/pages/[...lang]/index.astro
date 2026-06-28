@@ -2,6 +2,7 @@
 import PostList from '@/components/PostList.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { ui } from '@/i18n/ui'
 import Layout from '@/layouts/Layout.astro'
 import { getPinnedPosts, getPostsByYear } from '@/utils/content'
 
@@ -12,11 +13,16 @@ export async function getStaticPaths() {
 }
 
 const currentLang = getLangFromLocale(Astro.currentLocale)
+const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const pinnedPosts = await getPinnedPosts(currentLang)
 const postsByYear = await getPostsByYear(currentLang)
 ---
 
-<Layout>
+<Layout
+  pageTitle={currentUI.title}
+  pageDescription={currentUI.description}
+  supportedLangs={allLocales}
+>
   <div class="index">
     {pinnedPosts.length > 0 && (
       <section class="index-group">

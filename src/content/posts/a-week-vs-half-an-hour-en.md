@@ -1,5 +1,6 @@
 ---
 title: "One Week vs Half an Hour: Start With the Goal, Then Choose the Tool"
+seoTitle: "One Week vs Half an Hour: Choose the Tool Last"
 published: 2026-01-18
 description: A colleague spent a week using an AI Agent with Browser Automation to collect fewer than 100 leads. I wrote a Playwright crawler and finished in half an hour. Tools change, but the pattern of "when you have a new hammer, everything looks like a nail" keeps repeating.
 tags: [ai-engineering, developer-productivity, ai-agent]

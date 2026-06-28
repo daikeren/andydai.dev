@@ -1,5 +1,6 @@
 ---
 title: AI Made Misinformation Cheaper—So I Only Consume Primary Sources
+seoTitle: AI Misinformation and Primary Sources
 published: 2025-12-10
 description: AI has driven content production costs to near zero, but misinformation has become cheaper too. My response is returning to primary sources—watching podcasts, YouTube, and original reports directly, doing my own verification, not trusting second-hand processed content.
 tags: [media-literacy, ai, information-consumption, personal-workflow]

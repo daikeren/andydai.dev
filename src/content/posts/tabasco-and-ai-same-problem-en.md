@@ -1,5 +1,6 @@
 ---
 title: My Dad Can't Find Tabasco and You Using AI to Code Are the Same Problem
+seoTitle: Tabasco and AI Coding Share One Problem
 published: 2026-02-16
 description: Whether you rely on experience or AI, if you skip the step of understanding the problem first, you end up searching in the wrong place. When you can't find the answer, you conclude "it doesn't exist" instead of "maybe I'm looking in the wrong spot."
 tags: [ai-engineering, developer-productivity, problem-solving]

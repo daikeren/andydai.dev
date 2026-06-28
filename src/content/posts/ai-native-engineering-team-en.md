@@ -1,5 +1,6 @@
 ---
 title: How Our Engineering Team Compressed Two Weeks Into One Day With AI
+seoTitle: AI-Native Engineering Team Workflow
 published: 2025-12-13
 description: A 6-person startup's journey from traditional development to an AI-native team. Three core changes made the difference—lighter specs, AI-first reviews, and preview environments for faster iteration.
 tags: [ai-engineering, startup, developer-productivity]
