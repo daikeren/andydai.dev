@@ -1,5 +1,5 @@
 ---
-description: Andy Dai is CTO and co-founder at Codeer.ai, writing practical notes on AI tools, engineering teams, startup execution, and when new technology is actually worth adopting.
+description: Andy Dai is CTO and co-founder at Codeer.ai, sharing practical notes on AI tools, engineering teams, startup execution, and when to adopt new technology.
 lang: en
 ---
 
