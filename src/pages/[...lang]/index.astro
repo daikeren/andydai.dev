@@ -16,10 +16,13 @@ const currentLang = getLangFromLocale(Astro.currentLocale)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const pinnedPosts = await getPinnedPosts(currentLang)
 const postsByYear = await getPostsByYear(currentLang)
+const homePageTitle = currentLang === 'en'
+  ? 'Andy\'s System - AI, Engineering, Startups'
+  : `${currentUI.title} - ${currentUI.subtitle}`
 ---
 
 <Layout
-  pageTitle={currentUI.title}
+  pageTitle={homePageTitle}
   pageDescription={currentUI.description}
   supportedLangs={allLocales}
 >

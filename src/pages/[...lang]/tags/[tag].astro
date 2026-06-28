@@ -26,7 +26,7 @@ const supportedLangs = await getTagSupportedLangs(tag)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const pageDescription = currentLang === 'zh-tw'
   ? `瀏覽 Andy's System 中標記為 ${tag} 的文章，包含 Andy Dai 對 AI 工具實戰、工程團隊管理、developer productivity 與 startup 產品決策的觀察。`
-  : `Browse Andy's System posts tagged ${tag}, including Andy Dai's notes on AI engineering, developer productivity, engineering leadership, and startup execution.`
+  : `Posts tagged ${tag} on AI engineering, developer productivity, engineering leadership, and startup execution from Andy Dai.`
 ---
 
 <Layout
