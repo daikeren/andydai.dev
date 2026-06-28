@@ -1,5 +1,6 @@
 ---
 title: Rob Pike Received an AI-Sent Thank You Email on Christmas. He Exploded.
+seoTitle: Rob Pike and the AI Thank You Email
 published: 2025-12-27
 description: AI Village let Claude Opus 4.5 decide to send a thank-you email to Rob Pike with no human review. Pike's anger is completely justified—AI makes output easy, but that doesn't mean you can outsource the filtering and correction costs to the recipient.
 tags: [ai, ai-ethics, responsibility, productivity]

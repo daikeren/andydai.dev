@@ -23,9 +23,9 @@ export const ui: Record<Language, Translation> = {
     faq: 'Häufig gestellte Fragen',
   },
   'en': {
-    title: "Andy's System",
+    title: 'Andy\'s System',
     subtitle: 'Hands-on insights in AI, Engineering Teams, and Startups',
-    description: 'Practical experience in AI engineering, startup operations, and tech leadership. Focused on AI Agents, Developer Productivity, and Team Management.',
+    description: 'Andy\'s System shares Andy Dai\'s hands-on notes on AI engineering, developer productivity, engineering leadership, and startup execution at Codeer.ai.',
     posts: 'Posts',
     tags: 'Tags',
     about: 'About',
@@ -113,9 +113,9 @@ export const ui: Record<Language, Translation> = {
     faq: '常见问题',
   },
   'zh-tw': {
-    title: "Andy's System",
+    title: 'Andy\'s System',
     subtitle: 'AI、工程團隊、Startup 的實戰經驗',
-    description: 'AI 工程、Startup 經營、技術領導力的實戰經驗分享。專注於 AI Agent、Developer Productivity、團隊管理。',
+    description: 'Andy\'s System 記錄 Andy Dai 在 AI 工具實戰、工程團隊管理與 startup 產品決策中的觀察，聚焦 AI Agent、developer productivity、技術領導，以及把新技術落地到真實工作流程的判斷。',
     posts: '文章',
     tags: '標籤',
     about: '關於',

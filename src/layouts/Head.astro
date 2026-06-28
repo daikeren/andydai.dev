@@ -7,6 +7,8 @@ import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
 
 interface Props {
+  pageTitle?: string
+  pageDescription?: string
   postTitle?: string
   postDescription?: string
   postSlug?: string
@@ -14,7 +16,14 @@ interface Props {
 }
 
 // Props and Language
-const { postTitle, postDescription, postSlug } = Astro.props
+const {
+  pageTitle: customPageTitle,
+  pageDescription: customPageDescription,
+  postTitle,
+  postDescription,
+  postSlug,
+  supportedLangs = [],
+} = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const lang = currentLang === defaultLocale ? '' : `${currentLang}/`
@@ -23,6 +32,8 @@ const lang = currentLang === defaultLocale ? '' : `${currentLang}/`
 const afterBase = Astro.url.pathname.slice(base.length)
 const langPrefix = allLocales.find(l => l !== defaultLocale && afterBase.startsWith(`/${l}/`))
 const basePath = langPrefix ? afterBase.slice(`/${langPrefix}`.length) : afterBase
+const alternateLangs = supportedLangs.length > 0 ? supportedLangs : allLocales
+const xDefaultLang = alternateLangs.includes(defaultLocale) ? defaultLocale : currentLang
 
 // Site Configuration
 const { title, subtitle, description, i18nTitle, author, favicon } = themeConfig.site
@@ -39,13 +50,23 @@ const siteSubtitle = i18nTitle ? currentUI.subtitle : subtitle
 const siteDescription = i18nTitle ? currentUI.description : description
 
 // Page Metadata
-const pageTitle = postTitle ? `${postTitle} | ${siteTitle}` : `${siteTitle} - ${siteSubtitle}`
-const pageDescription = postDescription || siteDescription
+const postPageTitle = postTitle
+  ? `${postTitle} | ${siteTitle}`.length <= 60
+    ? `${postTitle} | ${siteTitle}`
+    : postTitle
+  : undefined
+const pageTitle = customPageTitle || postPageTitle || `${siteTitle} - ${siteSubtitle}`
+const pageDescription = customPageDescription || postDescription || siteDescription
 const pageImage = postSlug
   ? new URL(`${base}/og/${postSlug}.png`, Astro.url.origin)
   : apiflashKey
     ? `https://api.apiflash.com/v1/urltoimage?access_key=${apiflashKey}&url=${Astro.url}&format=png&width=1500&height=788&ttl=259200&wait_until=network_idle&no_tracking=true`
     : `https://api.apiflash.com/v1/urltoimage?access_key=02a837b6188f4ba0a7fd9fbeff03a83e&url=https://retypeset.radishzz.cc/${lang}&format=png&width=1500&height=788&ttl=604800&wait_until=network_idle&no_tracking=true`
+
+function getAlternateHref(locale: Language) {
+  const localePrefix = locale === defaultLocale ? '' : `/${locale}`
+  return `${Astro.url.origin}${base}${localePrefix}${basePath}`
+}
 ---
 
 <head>
@@ -71,17 +92,17 @@ const pageImage = postSlug
 <link rel="sitemap" href={`${base}/sitemap-index.xml`} />
 <link rel="alternate" href={`${base}/rss.xml`} type="application/rss+xml" title="RSS Feed" />
 <link rel="alternate" href={`${base}/atom.xml`} type="application/atom+xml" title="Atom Feed" />
-{/* hreflang: dynamically point to the corresponding URL for each locale */}
-{allLocales.map(l => (
+{/* hreflang: only advertise locales that have a generated matching page. */}
+{alternateLangs.map(l => (
   <link
     rel="alternate"
-    href={`${Astro.url.origin}${base}${l === defaultLocale ? '' : `/${l}`}${basePath}`}
+    href={getAlternateHref(l)}
     hreflang={l === 'zh-tw' ? 'zh-TW' : l}
   />
 ))}
 <link
   rel="alternate"
-  href={`${Astro.url.origin}${base}${basePath}`}
+  href={getAlternateHref(xDefaultLang)}
   hreflang="x-default"
 />
 

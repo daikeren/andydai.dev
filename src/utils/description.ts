@@ -13,7 +13,7 @@ const excerptLengths: Record<ExcerptScene, { cjk: number, other: number }> = {
   },
   meta: {
     cjk: 120,
-    other: 240,
+    other: 155,
   },
   og: {
     cjk: 70,
@@ -53,7 +53,7 @@ function getExcerpt(text: string, lang: Language, scene: ExcerptScene): string {
   cleanText = cleanText.replace(/\s+/g, ' ')
 
   // Normalize CJK punctuation spacing
-  cleanText = cleanText.replace(/([。？！："」』])\s+/g, '$1')
+  cleanText = cleanText.replace(/([。？！：」』])\s+/g, '$1')
 
   const excerpt = cleanText.slice(0, length).trim()
 
@@ -73,8 +73,8 @@ export function getPostDescription(
   const lang = (post.data.lang || defaultLocale) as Language
 
   if (post.data.description) {
-    // Only truncate for og scene, return full description for other scenes
-    return scene === 'og'
+    // Metadata surfaces need concise snippets; lists and feeds can keep author-written text.
+    return scene === 'meta' || scene === 'og'
       ? getExcerpt(post.data.description, lang, scene)
       : post.data.description
   }

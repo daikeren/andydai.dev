@@ -16,6 +16,7 @@ const posts = defineCollection({
     published: z.date(),
     // optional
     description: z.string().optional().default(''),
+    seoTitle: z.string().optional().default(''),
     updated: z.preprocess(
       val => val === '' ? undefined : val,
       z.date().optional(),

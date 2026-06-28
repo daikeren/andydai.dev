@@ -1,5 +1,5 @@
 ---
-description: Codeer.ai 的 CTO 暨共同創辦人，分享 AI、工程團隊與 Startup 的實戰經驗。
+description: 我是 Codeer.ai 的 CTO 暨共同創辦人 Andy Dai，這裡整理我在 AI 工具實戰、工程團隊管理、startup 產品決策與 no-code AI Agent 平台開發中的觀察，重點不是追工具，而是判斷什麼情境真的值得導入。
 lang: zh-tw
 ---
 

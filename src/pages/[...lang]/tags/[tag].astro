@@ -3,6 +3,7 @@ import PostList from '@/components/PostList.astro'
 import TagList from '@/components/TagList.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { ui } from '@/i18n/ui'
 import Layout from '@/layouts/Layout.astro'
 import { getAllTags, getPostsByTag, getTagSupportedLangs } from '@/utils/content'
 
@@ -17,18 +18,22 @@ export async function getStaticPaths() {
   return paths.flat()
 }
 
-interface Props {
-  tag: string
-}
-
 const { tag } = Astro.props
 const currentLang = getLangFromLocale(Astro.currentLocale)
 const posts = await getPostsByTag(tag, currentLang)
 const allTags = await getAllTags(currentLang)
 const supportedLangs = await getTagSupportedLangs(tag)
+const currentUI = ui[currentLang as keyof typeof ui] ?? {}
+const pageDescription = currentLang === 'zh-tw'
+  ? `瀏覽 Andy's System 中標記為 ${tag} 的文章，包含 Andy Dai 對 AI 工具實戰、工程團隊管理、developer productivity 與 startup 產品決策的觀察。`
+  : `Browse Andy's System posts tagged ${tag}, including Andy Dai's notes on AI engineering, developer productivity, engineering leadership, and startup execution.`
 ---
 
-<Layout supportedLangs={supportedLangs}>
+<Layout
+  pageTitle={`#${tag} | ${currentUI.title}`}
+  pageDescription={pageDescription}
+  supportedLangs={supportedLangs}
+>
   <header class="page-head">
     <h2 class="page-title">#{tag}</h2>
   </header>

@@ -1,5 +1,6 @@
 ---
 title: "When Claude Starts Apologizing: Four Ways to Proactively Control Context Boundaries"
+seoTitle: Control Claude Context Boundaries
 published: 2026-01-06
 description: When Claude says "You're absolutely right, I apologize," trust is already on the verge of collapse. Instead of waiting for that moment to be forced to restart, proactively control context boundaries—Handoff, Subagent, phased execution, and verification infrastructure.
 tags: [ai, claude, ai-coding, productivity]

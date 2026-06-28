@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content'
 import AboutPersonSchema from '@/components/AboutPersonSchema.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import { ui } from '@/i18n/ui'
 import Layout from '@/layouts/Layout.astro'
 
 export async function getStaticPaths() {
@@ -12,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 const currentLang = getLangFromLocale(Astro.currentLocale)
+const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 // Get about page content with different language
 const allAboutEntries = await getCollection('about')
 const aboutEntry = allAboutEntries.find(entry => entry.data.lang === currentLang)
@@ -21,7 +23,11 @@ const profileUrl = new URL(Astro.url.pathname, Astro.url.origin).href
 const profileDescription = aboutEntry?.data.description ?? ''
 ---
 
-<Layout postDescription={profileDescription}>
+<Layout
+  pageTitle={`${currentUI.about} Andy Dai | ${currentUI.title}`}
+  postDescription={profileDescription}
+  supportedLangs={allLocales}
+>
   <AboutPersonSchema profileUrl={profileUrl} description={profileDescription} />
   <!-- About Page Content -->
   <div class="heti">
