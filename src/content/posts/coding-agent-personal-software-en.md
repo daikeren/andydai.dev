@@ -6,7 +6,6 @@ tags: [ai-engineering, developer-productivity, coding-agent, side-project]
 lang: en
 abbrlink: coding-agent-personal-software
 toc: true
-draft: true
 ---
 
 > **TL;DR**: I wanted to know whether the PreSonus ATOM sitting at home could control Codex. I can barely read Swift and had little experience building macOS apps. Codex did almost all of the implementation; I acted more like the product owner and QA. I still use the controller every day, but I only know that it works on my machine. This is personal software, not a production-ready product.
