@@ -6,7 +6,6 @@ tags: [ai-engineering, developer-productivity, coding-agent, side-project]
 lang: zh-tw
 abbrlink: coding-agent-personal-software
 toc: true
-draft: true
 ---
 
 > **TL;DR**: 我原本只是想知道，家裡那台 PreSonus ATOM 能不能拿來控制 Codex。Swift 我只看得懂一點，macOS app 也沒什麼經驗，實作幾乎都是 Codex 做，我比較像 PO + QA。現在這台東西我在家還是每天用，但我只確定它在我的電腦上能跑。這是 personal software，不是 production-ready product。
