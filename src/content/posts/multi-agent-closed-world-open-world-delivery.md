@@ -85,6 +85,10 @@ Closed-world 裡，acceptance function 主要負責評分。Open-world 裡，驗
 
 「throughput 受最稀缺的環節約束」不是新理論。Theory of Constraints 與 queueing theory 早就在處理這件事：上游工作站再快，只要下游 queue 沒有消化，整體 throughput 就不會跟著上升。
 
+《目標》出版多年後，這個畫面還是沒有過期：constraint 不變時，加速非瓶頸工作站不會提高整體 throughput，只會讓更多半成品堆在瓶頸前。Multi-Agent 把同一幕搬進 software delivery；堆在 gate 前的不是工廠半成品，而是尚未 review、尚未接受，甚至前提已經過期的 code、spec 與 findings。
+
+AI 不會消除 constraint。它會移動 constraint。
+
 所以我現在把 delivery path 拆成三種 capacity：
 
 - **執行（execution）**：把已知方向變成可驗收的 code、tests、文件與修正。
