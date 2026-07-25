@@ -6,7 +6,6 @@ tags: [ai-engineering, multi-agent, developer-productivity]
 lang: zh-tw
 abbrlink: multi-agent-closed-world-open-world-delivery
 toc: true
-draft: true
 faqs:
   - question: Multi-Agent 為什麼不一定能加速軟體交付？
     answer: 把更多 agents 配成 execution workers，會先增加 execution supply 與 work in progress；validation 雖然也能用 agents 擴張，release、scope 與 priority decision 仍錨定在人身上。更多 code、spec 或 findings，不會自動變成 delivered outcome。
@@ -18,7 +17,7 @@ faqs:
 
 > **TL;DR**: Multi-Agent 最適合 objective 與 acceptance function 相對固定、feedback 可以快速重複的問題。Cursor 的 Agent Swarm 顯示，即使最後通過同一套 tests，舊版也可能需要新版 6.5 倍的 code；但日常 product engineering 的 acceptance function 會在執行途中被需求、remote state、review 與人的決策改寫。Execution 與大部分 validation 可以用 agents 快速擴張，最後的 release、scope 與 priority decision 仍然錨定在人身上。題目一直動，這些決定就沒辦法只在開頭做一次。
 
-Cursor 最近公開的 Agent Swarm 實驗裡，最值得看的數字不是 68,000 個 commits。
+Cursor 最近公開的 [Agent Swarm 實驗](https://cursor.com/blog/agent-swarm-model-economics)裡，最值得看的數字不是 68,000 個 commits。
 
 在 Fable 5 mix 裡，新舊兩版 swarm 最後都通過了完整的 held-out SQL test suite。Outcome 一樣，但舊版用了 64,305 行 engine code，新版只用了 9,908 行，差了 6.5 倍。Opus mix 更極端：舊版用了超過四倍的 code，19,013 行，還停在 97%；新版用 4,645 行通過 100%。
 
