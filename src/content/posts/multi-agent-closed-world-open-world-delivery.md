@@ -97,7 +97,7 @@ Execution 最直接；acceptance criteria 固定時，validation 也能用 revie
 
 執行與驗證最後都匯進同一個終點：有人要決定這個 change 能不能 release、scope 要不要改、哪個 priority 先做，而且要對結果負責。在 closed-world 裡，這些決定有一大部分可以 front-load 到 spec 與 acceptance criteria；open-world 的題目持續被現實改寫，同一批 decisions 會在 execution 中反覆出現。
 
-這才是不對稱的地方。Spawn 十個 workers 或 reviewers 幾乎立刻，不會同時長出十個擁有完整 context、權限與責任的 decision owners。增加一個資深工程師很慢；他真正稀缺的也不只是 execution，而是願意、能夠、也有權責做最後判斷的部分。
+這才是不對稱的地方。Spawn 十個 workers 或 reviewers 幾乎是立刻的事情，但是不會同時長出十個擁有完整 context、權限與責任的 decision owners。增加一個資深工程師很慢；他真正稀缺的也不只是 execution，而是願意、能夠、也有權責做最後判斷的部分。
 
 這不只是模型能力問題。Agent 可以提出 release recommendation，責任卻不會隨著 agent 一起 spawn；組織裡仍要有一個主體承擔線上事故、客戶影響與 trade-off 的後果。
 
