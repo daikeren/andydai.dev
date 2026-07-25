@@ -46,7 +46,7 @@ Cursor 也沒有只看 test score。每次 run 後，他們會人工檢查 code 
 
 這個前提還有成本上限。新版 swarm 的不同 model mixes 交出相近品質，成本卻從 \$1,339 到 \$10,565，差了將近八倍。Compute budget 當然可能成為實際 gate。這篇先不展開 model selection；我要處理的是另一個問題：即使你付得起更多 execution，團隊能不能把它變成交付？
 
-我後面會把這條 delivery path 拆成執行、驗證、決策三種 capacity。Cursor 顯示前兩種都能大幅 agent 化；open-world delivery 真正難補的是反覆被觸發、而且必須有人負責的 decision capacity。
+我後面會把這條 delivery path 拆成執行、驗證、決策三種 capacity。Cursor 顯示 execution，以及 acceptance criteria 固定時的 validation，都能用 agents 擴張；open-world delivery 真正難補的是反覆被觸發、而且必須有人負責的 decision capacity。
 
 ## Cursor 說 spec 最稀缺；真正的差別是 spec 會不會動
 
@@ -92,7 +92,7 @@ Closed-world 裡，acceptance function 主要負責評分。Open-world 裡，驗
 - **驗證（validation）**：透過 review、CI、security check、browser QA 與 live-state check，判斷 output 是否可靠。
 - **決策（decision）**：決定哪個方向值得做、哪個風險可以接受，以及現在怎樣才算 done。
 
-前兩種 capacity 都可以大量 agent 化。Execution 最直接；validation 也已經能用 review agents、reconciler 與 stacked lenses 擴張，我自己的 review-heavy workstream 也是同一個例子。
+Execution 最直接；acceptance criteria 固定時，validation 也能用 review agents、reconciler 與 stacked lenses 擴張，我自己的 review-heavy workstream 也是同一個例子。
 
 但 validation 能擴張到什麼程度，取決於 acceptance criteria 有多固定。標準固定時，review 是驗證；標準會動時，review 的一部分其實在決定標準。前面那次 severity calibration 就是例子：找出 findings 是 validation，決定哪個風險必須擋 release，則是 decision capacity。團隊容易低估後者，因為它常穿著 review 的外衣出現。
 
