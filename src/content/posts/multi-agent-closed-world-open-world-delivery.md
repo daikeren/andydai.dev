@@ -96,7 +96,7 @@ Closed-world 裡，acceptance function 主要負責評分。Open-world 裡，驗
 
 但 validation 能擴張到什麼程度，取決於 acceptance criteria 有多固定。標準固定時，review 是驗證；標準會動時，review 的一部分其實在決定標準。前面那次 severity calibration 就是例子：找出 findings 是 validation，決定哪個風險必須擋 release，則是 decision capacity。團隊容易低估後者，因為它常穿著 review 的外衣出現。
 
-但它們最後都匯進 decision capacity：有人要決定這個 change 能不能 release、scope 要不要改、哪個 priority 先做，而且要對結果負責。在 closed-world 裡，這些決定有一大部分可以 front-load 到 spec 與 acceptance criteria；open-world 的題目持續被現實改寫，同一批 decisions 會在 execution 中反覆出現。
+執行與驗證最後都匯進同一個終點：有人要決定這個 change 能不能 release、scope 要不要改、哪個 priority 先做，而且要對結果負責。在 closed-world 裡，這些決定有一大部分可以 front-load 到 spec 與 acceptance criteria；open-world 的題目持續被現實改寫，同一批 decisions 會在 execution 中反覆出現。
 
 這才是不對稱的地方。Spawn 十個 workers 或 reviewers 幾乎立刻，不會同時長出十個擁有完整 context、權限與責任的 decision owners。增加一個資深工程師很慢；他真正稀缺的也不只是 execution，而是願意、能夠、也有權責做最後判斷的部分。
 
