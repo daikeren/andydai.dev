@@ -1,5 +1,6 @@
 ---
 title: Multi-Agent Systems Scale Closed-World Work. Product Delivery Is Different.
+seoTitle: "Multi-Agent Systems: Closed Worlds vs. Product Delivery"
 published: 2026-07-25
 description: Cursor's Agent Swarm rebuilt SQLite in a controlled environment. Product delivery has moving acceptance criteria, shared state, and human decision gates. Before adding agents, find the scarce capacity.
 tags: [ai-engineering, multi-agent, developer-productivity]

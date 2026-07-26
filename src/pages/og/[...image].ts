@@ -11,7 +11,7 @@ const pages = Object.fromEntries(
   posts.map((post: CollectionEntry<'posts'>) => [
     post.id,
     {
-      title: post.data.title,
+      title: post.data.seoTitle || post.data.title,
       description: getPostDescription(post, 'og'),
     },
   ]),

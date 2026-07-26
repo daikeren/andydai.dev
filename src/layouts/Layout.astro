@@ -25,7 +25,7 @@ interface Props {
   pageDescription?: string
   postTitle?: string
   postDescription?: string
-  postSlug?: string
+  postImageId?: string
   supportedLangs?: Language[]
 }
 
@@ -34,7 +34,7 @@ const {
   pageDescription,
   postTitle,
   postDescription,
-  postSlug,
+  postImageId,
   supportedLangs = [],
 } = Astro.props
 const { isPost } = getPageInfo(Astro.url.pathname)
@@ -45,7 +45,7 @@ const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'fon
   lang={Astro.currentLocale}
   class:list={[fontStyle, isPost ? 'scroll-smooth' : '']}
 >
-  <Head {pageTitle} {pageDescription} {postTitle} {postDescription} {postSlug} {supportedLangs} />
+  <Head {pageTitle} {pageDescription} {postTitle} {postDescription} {postImageId} {supportedLangs} />
   <body>
     <div class="page-shell">
       <aside class="masthead">

@@ -11,7 +11,7 @@ interface Props {
   pageDescription?: string
   postTitle?: string
   postDescription?: string
-  postSlug?: string
+  postImageId?: string
   supportedLangs?: Language[]
 }
 
@@ -21,7 +21,7 @@ const {
   pageDescription: customPageDescription,
   postTitle,
   postDescription,
-  postSlug,
+  postImageId,
   supportedLangs = [],
 } = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
@@ -57,8 +57,8 @@ const postPageTitle = postTitle
   : undefined
 const pageTitle = customPageTitle || postPageTitle || `${siteTitle} - ${siteSubtitle}`
 const pageDescription = customPageDescription || postDescription || siteDescription
-const pageImage = postSlug
-  ? new URL(`${base}/og/${postSlug}.png`, Astro.url.origin)
+const pageImage = postImageId
+  ? new URL(`${base}/og/${postImageId}.png`, Astro.url.origin)
   : apiflashKey
     ? `https://api.apiflash.com/v1/urltoimage?access_key=${apiflashKey}&url=${Astro.url}&format=png&width=1500&height=788&ttl=259200&wait_until=network_idle&no_tracking=true`
     : `https://api.apiflash.com/v1/urltoimage?access_key=02a837b6188f4ba0a7fd9fbeff03a83e&url=https://retypeset.radishzz.cc/${lang}&format=png&width=1500&height=788&ttl=604800&wait_until=network_idle&no_tracking=true`
