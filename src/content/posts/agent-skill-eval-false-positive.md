@@ -60,7 +60,7 @@ Skill 出現在清單裡，只代表 harness 找得到它。Agent 看到一般 p
 
 這不是方法論潔癖。有沒有對照組，真的會讓結論完全不同。
 
-[SkillsBench](https://arxiv.org/abs/2602.12670)目前的 v1.1 用 87 個 tasks、18 組 model–harness 設定，比較沒有 Skills 和研究者準備的 Skills。平均 pass rate 從 33.9% 升到 50.5%，增加 16.6 個百分點。至少在這套測試裡，Skill 確實可能帶來明顯改善。
+[SkillsBench](https://arxiv.org/abs/2602.12670)論文最新一版的 aggregate evaluation 涵蓋 87 個 tasks、18 組 model–harness 設定，比較沒有 Skills 和研究者準備的 Skills。平均 pass rate 從 33.9% 升到 50.5%，增加 16.6 個百分點。至少在這套測試裡，Skill 確實可能帶來明顯改善。
 
 SkillsBench 的 Appendix K 更接近我開場遇到的問題。論文把 invocation 定義成 trace 裡有讀取或叫用該 task 的 Skill。在這個定義下，Codex / GPT-5.5 的 invocation rate 是 99.2%，Claude Code / Opus 4.7 是 68.2%，OpenHands / Gemini 3.1 Flash Lite 則是 46.4%。同一張表還把 invocation rate、最後的 resolution rate，以及「有 invoke 時的 resolution rate」分開列。
 
@@ -193,7 +193,7 @@ Outcome 告訴你任務有沒有完成。Routing 告訴你 Skill 有沒有被用
 
 如果完整 Skill 出現明顯 signal，再補沒有 instruction、等長對照、更多 tasks 和更多 trials。Eval 的成本應該跟你要做的決定一起放大。
 
-最後只需要問一個問題：
+## 最後，只問一件事
 
 **把這個 Skill 換成一段簡短 instruction，結果真的會變差嗎？**
 
