@@ -1,13 +1,16 @@
 import type { CollectionEntry } from 'astro:content'
 import { OGImageRoute } from 'astro-og-canvas'
 import { getCollection } from 'astro:content'
+import { allLocales } from '@/config'
+import { ui } from '@/i18n/ui'
 import { getPostDescription } from '@/utils/description'
+import { getSiteImageId } from '@/utils/og'
 
 // eslint-disable-next-line antfu/no-top-level-await
 const posts = await getCollection('posts')
 
 // Create slug-to-metadata lookup object for blog posts
-const pages = Object.fromEntries(
+const postPages = Object.fromEntries(
   posts.map((post: CollectionEntry<'posts'>) => [
     post.id,
     {
@@ -16,6 +19,19 @@ const pages = Object.fromEntries(
     },
   ]),
 )
+
+// Site-level cards for every page that isn't a post (home, about, tags, 404)
+const sitePages = Object.fromEntries(
+  allLocales.map(lang => [
+    getSiteImageId(lang),
+    {
+      title: ui[lang].title,
+      description: ui[lang].subtitle,
+    },
+  ]),
+)
+
+const pages = { ...postPages, ...sitePages }
 
 // Configure Open Graph image generation route
 // eslint-disable-next-line antfu/no-top-level-await
