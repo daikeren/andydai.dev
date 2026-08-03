@@ -1,5 +1,6 @@
 ---
 import PostList from '@/components/PostList.astro'
+import SiteSchema from '@/components/SiteSchema.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import { ui } from '@/i18n/ui'
@@ -26,6 +27,12 @@ const homePageTitle = currentLang === 'en'
   pageDescription={currentUI.description}
   supportedLangs={allLocales}
 >
+  <SiteSchema
+    siteUrl={new URL(Astro.url.pathname, Astro.url.origin).href}
+    name={currentUI.title}
+    description={currentUI.description}
+    lang={currentLang}
+  />
   <div class="index">
     {pinnedPosts.length > 0 && (
       <section class="index-group">

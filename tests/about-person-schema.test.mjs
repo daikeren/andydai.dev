@@ -50,5 +50,5 @@ test('localized about page outputs a Person JSON-LD schema with the localized UR
 
   assert.ok(personSchema, 'Expected /en/about/ to include a Person JSON-LD schema')
   assert.equal(personSchema.url, 'https://andydai.dev/en/about/')
-  assert.equal(personSchema.description, 'CTO and co-founder at Codeer.ai. Writes about AI, engineering teams, and startup execution.')
+  assert.equal(personSchema.description, 'Andy Dai is CTO and co-founder at Codeer.ai, sharing practical notes on AI tools, engineering teams, startup execution, and when to adopt new technology.')
 })

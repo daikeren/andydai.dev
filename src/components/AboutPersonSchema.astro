@@ -3,6 +3,7 @@
  * AboutPersonSchema - About 頁的 Person 結構化資料
  */
 import { themeConfig } from '@/config'
+import { PERSON_ID, personSameAs } from '@/utils/schema'
 
 interface Props {
   profileUrl: string
@@ -12,17 +13,14 @@ interface Props {
 const { profileUrl, description } = Astro.props
 const { author } = themeConfig.site
 
-const sameAs = themeConfig.footer.links
-  .filter(link => ['GitHub', 'X', 'LinkedIn'].includes(link.name))
-  .map(link => link.url)
-
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': PERSON_ID,
   'name': author,
   'url': profileUrl,
   'description': description,
-  'sameAs': sameAs,
+  'sameAs': personSameAs(),
 }
 ---
 

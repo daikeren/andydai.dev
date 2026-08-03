@@ -1,0 +1,40 @@
+---
+/**
+ * SiteSchema - 首頁的 WebSite 結構化資料
+ *
+ * author 用 @id 指向 About 頁的 Person，讓 AI 引擎把跨語言、跨頁面的
+ * 「Andy Dai」收斂成同一個 entity。
+ */
+import type { Language } from '@/i18n/config'
+import { themeConfig } from '@/config'
+import { langMap } from '@/i18n/config'
+import { PERSON_ID, personSameAs } from '@/utils/schema'
+
+interface Props {
+  siteUrl: string
+  name: string
+  description: string
+  lang: Language
+}
+
+const { siteUrl, name, description, lang } = Astro.props
+const { author, url } = themeConfig.site
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'url': siteUrl,
+  name,
+  description,
+  'inLanguage': langMap[lang][0],
+  'author': {
+    '@type': 'Person',
+    '@id': PERSON_ID,
+    'name': author,
+    'url': `${url}/about/`,
+    'sameAs': personSameAs(),
+  },
+}
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
