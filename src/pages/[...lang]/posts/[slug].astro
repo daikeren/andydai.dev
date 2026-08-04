@@ -6,13 +6,14 @@ import ArticleSchema from '@/components/ArticleSchema.astro'
 import Comment from '@/components/Comment/Index.astro'
 import FAQ from '@/components/FAQ.astro'
 import PostDate from '@/components/PostDate.astro'
+import RelatedPosts from '@/components/RelatedPosts.astro'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import TOC from '@/components/Widgets/TOC.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
-import { checkPostSlugDuplication } from '@/utils/content'
+import { checkPostSlugDuplication, getRelatedPosts } from '@/utils/content'
 import { getPostDescription } from '@/utils/description'
 
 export async function getStaticPaths() {
@@ -81,6 +82,7 @@ const slug = post.data.abbrlink || post.id
 const seoTitle = post.data.seoTitle || post.data.title
 const description = getPostDescription(post, 'meta')
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
+const relatedPosts = await getRelatedPosts(post, currentLang, 3)
 ---
 
 <Layout
@@ -99,6 +101,8 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     tags={post.data.tags}
     faqs={post.data.faqs}
   />
+  <!-- Desktop outline, rendered into the identity rail -->
+  {post.data.toc && <TOC slot="rail" variant="rail" headings={headings} />}
   <article class="heti">
     <header class="post-header">
       <!-- Go Back Button On Desktop -->
@@ -145,6 +149,8 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
           lang={currentLang}
         />
       )}
+      <!-- Where to go after the article, before the comment box -->
+      <RelatedPosts posts={relatedPosts} lang={currentLang} />
       <!-- Comment -->
       <Comment />
     </div>

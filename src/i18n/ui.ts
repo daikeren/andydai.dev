@@ -9,6 +9,10 @@ interface Translation {
   about: string
   toc: string
   faq: string
+  /** Heading above the related-posts block at the end of an article. */
+  readNext: string
+  /** Label for the pinned group on the post index. */
+  pinned: string
 }
 
 export const ui: Record<Language, Translation> = {
@@ -21,6 +25,8 @@ export const ui: Record<Language, Translation> = {
     about: 'Über',
     toc: 'Inhaltsverzeichnis',
     faq: 'Häufig gestellte Fragen',
+    readNext: 'Weiterlesen',
+    pinned: 'Angeheftet',
   },
   'en': {
     title: 'Andy\'s System',
@@ -31,6 +37,8 @@ export const ui: Record<Language, Translation> = {
     about: 'About',
     toc: 'Table of Contents',
     faq: 'Frequently Asked Questions',
+    readNext: 'Read next',
+    pinned: 'Pinned',
   },
   'es': {
     title: 'Retipografía',
@@ -41,6 +49,8 @@ export const ui: Record<Language, Translation> = {
     about: 'Sobre',
     toc: 'Índice',
     faq: 'Preguntas frecuentes',
+    readNext: 'Sigue leyendo',
+    pinned: 'Fijados',
   },
   'fr': {
     title: 'Retypographie',
@@ -51,6 +61,8 @@ export const ui: Record<Language, Translation> = {
     about: 'À propos',
     toc: 'Table des matières',
     faq: 'Foire aux questions',
+    readNext: 'À lire ensuite',
+    pinned: 'Épinglés',
   },
   'ja': {
     title: '再組版',
@@ -61,6 +73,8 @@ export const ui: Record<Language, Translation> = {
     about: '概要',
     toc: '目次',
     faq: 'よくある質問',
+    readNext: '次に読む',
+    pinned: '固定',
   },
   'ko': {
     title: '재조판',
@@ -71,6 +85,8 @@ export const ui: Record<Language, Translation> = {
     about: '소개',
     toc: '목차',
     faq: '자주 묻는 질문',
+    readNext: '다음 읽을 글',
+    pinned: '고정됨',
   },
   'pl': {
     title: 'Przeskład',
@@ -81,6 +97,8 @@ export const ui: Record<Language, Translation> = {
     about: 'O stronie',
     toc: 'Spis treści',
     faq: 'Najczęściej zadawane pytania',
+    readNext: 'Czytaj dalej',
+    pinned: 'Przypięte',
   },
   'pt': {
     title: 'Retipografia',
@@ -91,6 +109,8 @@ export const ui: Record<Language, Translation> = {
     about: 'Sobre',
     toc: 'Sumário',
     faq: 'Perguntas frequentes',
+    readNext: 'Leia a seguir',
+    pinned: 'Fixados',
   },
   'ru': {
     title: 'Переверстка',
@@ -101,6 +121,8 @@ export const ui: Record<Language, Translation> = {
     about: 'О себе',
     toc: 'Оглавление',
     faq: 'Часто задаваемые вопросы',
+    readNext: 'Читать далее',
+    pinned: 'Закреплённые',
   },
   'zh': {
     title: '重新编排',
@@ -111,6 +133,8 @@ export const ui: Record<Language, Translation> = {
     about: '关于',
     toc: '目录',
     faq: '常见问题',
+    readNext: '继续阅读',
+    pinned: '置顶',
   },
   'zh-tw': {
     title: 'Andy\'s System',
@@ -121,5 +145,7 @@ export const ui: Record<Language, Translation> = {
     about: '關於',
     toc: '目錄',
     faq: '常見問題',
+    readNext: '接下來',
+    pinned: '置頂',
   },
 }

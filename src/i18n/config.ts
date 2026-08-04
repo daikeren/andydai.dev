@@ -16,6 +16,22 @@ export const langMap = {
 // Supported Languages
 export type Language = keyof typeof langMap
 
+// Endonyms — each language named in itself, so the switcher label is legible
+// to the reader it is offering the switch to.
+export const langNameMap: Record<Language, string> = {
+  'de': 'Deutsch',
+  'en': 'English',
+  'es': 'Español',
+  'fr': 'Français',
+  'ja': '日本語',
+  'ko': '한국어',
+  'pl': 'Polski',
+  'pt': 'Português',
+  'ru': 'Русский',
+  'zh': '简体中文',
+  'zh-tw': '繁體中文',
+}
+
 // Giscus Language Map
 // https://giscus.app/
 export const giscusLocaleMap: Record<Language, string> = {

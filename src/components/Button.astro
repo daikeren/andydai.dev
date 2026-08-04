@@ -1,8 +1,8 @@
 ---
 import type { Language } from '@/i18n/config'
-import LanguageSwitcherIcon from '@/assets/icons/language-switcher.svg'
 import { moreLocales } from '@/config'
-import { getNextGlobalLangPath, getNextSupportedLangPath } from '@/i18n/path'
+import { langNameMap } from '@/i18n/config'
+import { getNextGlobalLangPath, getNextSupportedLang, getNextSupportedLangPath } from '@/i18n/path'
 
 interface Props {
   supportedLangs: Language[]
@@ -20,6 +20,8 @@ const nextUrl = showLanguageSwitcher
     ? getNextSupportedLangPath(currentPath, supportedLangs) // Use supported languages when available
     : getNextGlobalLangPath(currentPath) // Fallback to all languages when no supported languages data
   : ''
+const nextLang = getNextSupportedLang(currentPath, hasScopedLangs ? supportedLangs : [])
+const nextLangName = langNameMap[nextLang]
 ---
 
 {showLanguageSwitcher && (
@@ -28,12 +30,11 @@ const nextUrl = showLanguageSwitcher
       id="language-switcher"
       href={nextUrl}
       class="control-btn"
-      aria-label="Switch website language"
+      hreflang={nextLang}
+      lang={nextLang}
+      aria-label={`Switch language to ${nextLangName}`}
     >
-      <LanguageSwitcherIcon
-        aria-hidden="true"
-        fill="currentColor"
-      />
+      {nextLangName}
     </a>
   </div>
 )}
@@ -45,48 +46,55 @@ const nextUrl = showLanguageSwitcher
     gap: 1.1rem;
   }
 
-  /* Icon stays icon-sized in layout; an invisible centered overlay
-     gives a 44px touch target without shifting anything. */
+  /* Named, not glyphed. Language is the one control on a bilingual site the
+     reader must be able to identify without experimenting, and the previous
+     serif "A" gave no clue which language it led to. The label is the
+     destination's own endonym, so it reads to the person being offered it. */
   .control-btn {
     position: relative;
-    display: grid;
-    place-items: center;
-    width: 1.05rem;
-    height: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     padding: 0;
     border: none;
     background: none;
     cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: oklch(var(--un-preset-theme-colors-secondary));
-    transition:
-      color 0.18s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    text-decoration: none;
+    transition: color 0.18s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  /* Globe mark: identifies the control as language rather than a stray link,
+     while the word carries the actual meaning. */
+  .control-btn::after {
+    content: "";
+    order: -1;
+    width: 0.82em;
+    height: 0.82em;
+    background: currentColor;
+    -webkit-mask: var(--globe) center / contain no-repeat;
+    mask: var(--globe) center / contain no-repeat;
+    --globe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18'/%3E%3C/svg%3E");
+  }
+
+  /* Invisible centered overlay gives a 44px touch target without shifting
+     anything in the layout. */
   .control-btn::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 44px;
-    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
   }
 
   .control-btn:hover {
     color: oklch(var(--un-preset-theme-colors-accent));
-  }
-
-  .control-btn:active {
-    transform: scale(0.9);
-  }
-
-  .control-btn :global(svg) {
-    width: 100%;
-    height: 100%;
-  }
-
-  :global(.reduce-motion) .control-btn {
-    transition-property: color;
   }
 </style>

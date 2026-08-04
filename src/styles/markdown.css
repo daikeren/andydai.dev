@@ -234,6 +234,35 @@
   background: oklch(var(--un-preset-theme-colors-secondary) / 0.05);
   color: oklch(var(--un-preset-theme-colors-secondary));
 }
+/* TL;DR — the one block that earns emphasis
+   PRODUCT.md principle 4: visual emphasis should track real meaning. This is
+   the whole argument in one paragraph, so it is set as a standfirst — larger,
+   full-strength ink, closed by a rule — rather than recessed into the same
+   grey box as every incidental quote. Deliberately not a tinted panel: the
+   summary is the article opening, not an aside next to it. */
+.heti blockquote.tldr {
+  margin: 0 0 2rem;
+  padding: 0 0 1.4rem;
+  border: none;
+  border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.18);
+  border-radius: 0;
+  background: none;
+  color: oklch(var(--un-preset-theme-colors-primary));
+  font-size: 1.06em;
+}
+.heti blockquote.tldr :where(p) {
+  line-height: 1.8;
+}
+/* The "TL;DR" lead-in becomes the label instead of just bold body text. */
+.heti blockquote.tldr strong:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: oklch(var(--un-preset-theme-colors-accent));
+}
+
 .heti blockquote[class*="admonition-"] {
   --at-apply: 'c-secondary';
   padding: 1.05rem 1.2rem;

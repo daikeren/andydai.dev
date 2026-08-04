@@ -108,6 +108,34 @@ export function remarkContainerDirectives() {
       }
     })
 
+    // Mark the TL;DR blockquote
+    //
+    // Every post opens with `> **TL;DR**: …`, which is the highest-value
+    // block on the page and rendered identically to any other quote. Tagging
+    // it here rather than introducing a `:::tldr` directive means no content
+    // migration and no new syntax for the author to remember.
+    visit(tree, 'blockquote', (node) => {
+      const firstChild = node.children?.[0]?.children?.[0]
+      if (!firstChild) {
+        return
+      }
+
+      // `**TL;DR**: …` parses to a strong node; a plain `TL;DR: …` to text.
+      const leadText = firstChild.type === 'strong'
+        ? getLabelText(firstChild)
+        : firstChild.type === 'text' ? firstChild.value : ''
+
+      if (!/^TL;?DR\b/i.test(leadText.trim())) {
+        return
+      }
+
+      node.data ??= {}
+      node.data.hProperties = {
+        ...node.data.hProperties,
+        className: [...[node.data.hProperties?.className ?? []].flat(), 'tldr'],
+      }
+    })
+
     // Handle > [!TYPE] syntax
     visit(tree, 'blockquote', (node) => {
       const firstTextNode = node.children?.[0]?.children?.[0]

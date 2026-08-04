@@ -47,13 +47,16 @@ const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'fon
 >
   <Head {pageTitle} {pageDescription} {postTitle} {postDescription} {postImageId} {supportedLangs} />
   <body>
-    <div class="page-shell">
+    <div class="page-shell" class:list={[{ 'has-rail-outline': isPost }]}>
       <aside class="masthead">
         <Header />
         <div class="masthead-controls">
           <Navbar />
           <Button supportedLangs={supportedLangs} />
         </div>
+        <!-- Desktop-only rail content (the post outline). Hidden below the
+             rail breakpoint, where the masthead sits above the article. -->
+        <slot name="rail" />
       </aside>
 
       <main class="column">
@@ -126,6 +129,12 @@ const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'fon
       grid-template-rows: 1fr auto;
       justify-content: center;
       align-items: start;
+    }
+
+    /* Post pages put the outline in the rail, which needs the extra width to
+       set two-line entries. 15rem + gap + measure still clears 1024px. */
+    .page-shell.has-rail-outline {
+      --rail: 15rem;
     }
 
     .masthead {

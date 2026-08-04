@@ -36,13 +36,14 @@ const homePageTitle = currentLang === 'en'
   <div class="index">
     {pinnedPosts.length > 0 && (
       <section class="index-group">
+        <h2 class="index-group-label index-pinned font-time">{currentUI.pinned}</h2>
         <PostList posts={pinnedPosts} lang={currentLang} pinned={true} />
       </section>
     )}
 
     {[...postsByYear.entries()].map(([year, posts]) => (
       <section class="index-group">
-        <h2 class="index-year font-time">{year}</h2>
+        <h2 class="index-group-label font-time">{year}</h2>
         <PostList posts={posts} lang={currentLang} />
       </section>
     ))}
@@ -56,7 +57,7 @@ const homePageTitle = currentLang === 'en'
     margin-top: 4.25rem;
   }
 
-  .index-year {
+  .index-group-label {
     display: flex;
     align-items: center;
     gap: 0.9rem;
@@ -66,10 +67,20 @@ const homePageTitle = currentLang === 'en'
     letter-spacing: 0.1em;
     color: var(--ink-muted);
   }
-  .index-year::after {
+  .index-group-label::after {
     content: "";
     flex: 1;
     height: 1px;
     background: oklch(var(--un-preset-theme-colors-secondary) / 0.13);
+  }
+
+  /* The pinned group previously ran straight into the first year with no
+     label, so it read as an unexplained set of posts out of date order. */
+  .index-pinned {
+    text-transform: uppercase;
+    color: oklch(var(--un-preset-theme-colors-accent));
+  }
+  .index-pinned::after {
+    background: oklch(var(--un-preset-theme-colors-accent) / 0.25);
   }
 </style>

@@ -5,59 +5,107 @@ import { getPageInfo } from '@/utils/page'
 
 interface Props {
   headings: MarkdownHeading[]
+  /**
+   * `rail` renders the sticky desktop outline in the identity rail;
+   * `inline` renders the collapsible version above the article on phones.
+   * Exactly one is visible at a time (CSS), so both can ship in the markup
+   * without a runtime move between containers.
+   */
+  variant?: 'inline' | 'rail'
 }
 
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 
-const { headings = [] } = Astro.props
+const { headings = [], variant = 'inline' } = Astro.props
 const filteredHeadings = headings.filter(heading => heading.depth >= 2 && heading.depth <= 4)
+const isRail = variant === 'rail'
 ---
 
-{filteredHeadings.length > 0 && (
-  <details id="toc" class="toc no-heti" open>
-    <summary class="toc-summary">
-      <span class="toc-label">{currentUI.toc}</span>
-      <svg class="toc-caret" aria-hidden="true" viewBox="0 0 12 12" fill="none">
-        <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </summary>
-    <nav aria-label="Table of Contents">
-      <ul id="toc-links-list" class="toc-list">
-        {filteredHeadings.map(heading => (
-          <li
-            class:list={[
-              'toc-item',
-              { 'is-h2': heading.depth === 2 },
-              { 'is-h3': heading.depth === 3 },
-              { 'is-h4': heading.depth === 4 },
-            ]}
-          >
-            <a href={`#${heading.slug}`} class="toc-link">{heading.text}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </details>
+{filteredHeadings.length > 0 && (isRail
+  ? (
+      <nav id="toc-rail" class="toc toc-rail no-heti" aria-label={currentUI.toc}>
+        <p class="toc-label">{currentUI.toc}</p>
+        <ul class="toc-list">
+          {filteredHeadings.map(heading => (
+            <li
+              class:list={[
+                'toc-item',
+                { 'is-h2': heading.depth === 2 },
+                { 'is-h3': heading.depth === 3 },
+                { 'is-h4': heading.depth === 4 },
+              ]}
+            >
+              <a href={`#${heading.slug}`} class="toc-link">{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  : (
+      <details id="toc" class="toc toc-inline no-heti" open>
+        <summary class="toc-summary">
+          <span class="toc-label">{currentUI.toc}</span>
+          <svg class="toc-caret" aria-hidden="true" viewBox="0 0 12 12" fill="none">
+            <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <nav aria-label={currentUI.toc}>
+          <ul id="toc-links-list" class="toc-list">
+            {filteredHeadings.map(heading => (
+              <li
+                class:list={[
+                  'toc-item',
+                  { 'is-h2': heading.depth === 2 },
+                  { 'is-h3': heading.depth === 3 },
+                  { 'is-h4': heading.depth === 4 },
+                ]}
+              >
+                <a href={`#${heading.slug}`} class="toc-link">{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+    )
 )}
 
-{/*
-  Ships open so the contents are in the markup for crawlers and no-JS readers.
-  On a phone an eight-entry TOC pushes the first paragraph off the screen
-  entirely, so it collapses below the rail breakpoint. Inline and adjacent to
-  the element, this runs during parse — the panel is never painted open.
-  `data-astro-rerun` re-applies it after a ClientRouter navigation.
-*/}
-<script is:inline data-astro-rerun>
-  (() => {
-    const toc = document.getElementById('toc')
-    if (toc && window.matchMedia('(max-width: 1023px)').matches)
-      toc.open = false
-  })()
-</script>
+{!isRail && filteredHeadings.length > 0 && (
+  <>
+    {/*
+      Ships open so the contents are in the markup for crawlers and no-JS
+      readers. On a phone an eight-entry TOC pushes the first paragraph off
+      the screen entirely, so it collapses below the rail breakpoint. Inline
+      and adjacent to the element, this runs during parse — the panel is
+      never painted open. `data-astro-rerun` re-applies it after a
+      ClientRouter navigation.
+    */}
+    <script is:inline data-astro-rerun>
+      (() => {
+        const toc = document.getElementById('toc')
+        if (toc && window.matchMedia('(max-width: 1023px)').matches)
+          toc.open = false
+      })()
+    </script>
+  </>
+)}
 
 <style>
-  .toc {
+  /* One outline ships in two places; CSS picks which is live. */
+  .toc-rail {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .toc-inline {
+      display: none;
+    }
+    .toc-rail {
+      display: block;
+    }
+  }
+
+  /* --- Inline (phones): a disclosure above the article --- */
+  .toc-inline {
     margin: 0 0 2.25rem;
     padding: 0.9rem 0 1.05rem;
     border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.16);
@@ -65,13 +113,8 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
   }
   /* Collapsed, this is a single control — it does not need a block's worth of
      padding under it. */
-  .toc:not([open]) {
+  .toc-inline:not([open]) {
     padding-bottom: 0.9rem;
-  }
-  @media (min-width: 1024px) {
-    .toc {
-      margin-bottom: 2.75rem;
-    }
   }
 
   .toc-summary {
@@ -96,16 +139,6 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
     color: oklch(var(--un-preset-theme-colors-primary));
   }
 
-  .toc-label {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    transition: color 0.16s ease-out;
-  }
-
   /* The caret is what makes the label read as a control rather than a
      decorative label sitting above the list. */
   .toc-caret {
@@ -116,10 +149,22 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
       transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
       color 0.16s ease-out;
   }
-  .toc[open] .toc-caret {
+  .toc-inline[open] .toc-caret {
     transform: rotate(180deg);
   }
 
+  .toc-label {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    transition: color 0.16s ease-out;
+  }
+
+  /* --- Shared list --- */
   .toc-list {
     margin: 0.95rem 0 0;
     padding: 0;
@@ -132,15 +177,9 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
     line-height: 1.55;
   }
   /* Touch-first spacing: a 0.88rem link is ~21px tall, so the gap is doing the
-     work of making each entry separately tappable. Tightened on the desktop
-     rail breakpoint, where the pointer is precise. */
+     work of making each entry separately tappable. */
   .toc-item + .toc-item {
     margin-top: 0.85rem;
-  }
-  @media (min-width: 1024px) {
-    .toc-item + .toc-item {
-      margin-top: 0.5rem;
-    }
   }
   .toc-item.is-h3 {
     margin-left: 1.1rem;
@@ -170,9 +209,152 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
   .toc-link:hover {
     color: oklch(var(--un-preset-theme-colors-primary));
   }
-  /* Active section (progressive enhancement where supported) */
-  #toc-links-list a:target-current {
-    color: oklch(var(--un-preset-theme-colors-accent));
-    font-weight: 550;
+
+  /* --- Rail (desktop): sticky outline, reading position marked --- */
+  @media (min-width: 1024px) {
+    .toc-rail {
+      /* Sits in the ~600px of rail the masthead was leaving empty. Capped and
+         scrollable so a long outline can never outgrow the viewport and push
+         the sticky rail out of reach. */
+      max-height: calc(100dvh - var(--edge, 4rem) - 19rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: oklch(var(--un-preset-theme-colors-secondary) / 0.2) transparent;
+    }
+
+    .toc-rail .toc-list {
+      margin-top: 0.9rem;
+      /* The marker rail for the current-section tick. */
+      border-left: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.15);
+    }
+
+    .toc-rail .toc-item {
+      margin: 0;
+      padding-left: 0.85rem;
+    }
+    .toc-rail .toc-item + .toc-item {
+      margin-top: 0.6rem;
+    }
+    .toc-rail .toc-item.is-h3 {
+      margin-left: 0;
+      padding-left: 1.75rem;
+    }
+    .toc-rail .toc-item.is-h4 {
+      margin-left: 0;
+      padding-left: 2.6rem;
+    }
+
+    .toc-rail .toc-link {
+      position: relative;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: oklch(var(--un-preset-theme-colors-secondary) / 0.78);
+    }
+    .toc-rail .is-h2 > .toc-link::before {
+      margin-right: 0.5rem;
+      font-size: 0.68rem;
+      opacity: 0.75;
+    }
+
+    /* Reading position. Set by the scroll-spy script below; if the script
+       never runs the outline is still a complete, usable list of links. */
+    .toc-rail .toc-item.is-current > .toc-link {
+      color: oklch(var(--un-preset-theme-colors-primary));
+      font-weight: 550;
+    }
+    .toc-rail .toc-item.is-current > .toc-link::after {
+      content: "";
+      position: absolute;
+      left: -0.9rem;
+      top: 0.35em;
+      width: 2px;
+      height: 0.95em;
+      border-radius: 1px;
+      background: oklch(var(--un-preset-theme-colors-accent));
+    }
+    .toc-rail .toc-item.is-current.is-h3 > .toc-link::after {
+      left: -1.8rem;
+    }
+    .toc-rail .toc-item.is-current.is-h4 > .toc-link::after {
+      left: -2.65rem;
+    }
   }
 </style>
+
+<script>
+  // Marks the section currently being read in the rail outline.
+  // Progressive enhancement: without it every link still works, so the
+  // outline never depends on this running.
+  function initTocSpy() {
+    const rail = document.getElementById('toc-rail')
+    if (!rail)
+      return
+
+    const items = Array.from(rail.querySelectorAll('.toc-item')) as HTMLLIElement[]
+    const byId = new Map<string, HTMLLIElement>()
+    for (const item of items) {
+      const link = item.querySelector('.toc-link') as HTMLAnchorElement | null
+      const id = decodeURIComponent(link?.hash.slice(1) ?? '')
+      if (id)
+        byId.set(id, item)
+    }
+
+    const headings = (Array.from(
+      document.querySelectorAll('#post-content :is(h2, h3, h4)[id]'),
+    ) as HTMLElement[]).filter(h => byId.has(h.id))
+    if (headings.length === 0)
+      return
+
+    let current: HTMLLIElement | null = null
+    let queued = false
+
+    const sync = () => {
+      queued = false
+      // The last heading whose top has passed a band just under the viewport
+      // top — matches where a reader's eye actually is, unlike an
+      // IntersectionObserver edge, which fires on headings scrolling *out*.
+      const line = window.innerHeight * 0.25
+      let active: HTMLElement | undefined
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= line)
+          active = h
+        else
+          break
+      }
+      // Above the first heading, mark nothing rather than guessing.
+      const next = active ? byId.get(active.id) ?? null : null
+      if (next === current)
+        return
+      current?.classList.remove('is-current')
+      next?.classList.add('is-current')
+      current = next
+
+      if (next) {
+        // Keep the marked entry in view when the outline itself scrolls.
+        const box = rail.getBoundingClientRect()
+        const row = next.getBoundingClientRect()
+        if (row.top < box.top || row.bottom > box.bottom)
+          next.scrollIntoView({ block: 'nearest' })
+      }
+    }
+
+    const onScroll = () => {
+      if (queued)
+        return
+      queued = true
+      requestAnimationFrame(sync)
+    }
+
+    sync()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    // ClientRouter swaps the document; drop the listeners with it.
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }, { once: true })
+  }
+
+  document.addEventListener('astro:page-load', initTocSpy)
+</script>

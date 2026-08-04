@@ -215,6 +215,66 @@ async function _getPostsByTag(tag: string, lang?: Language) {
 export const getPostsByTag = memoize(_getPostsByTag)
 
 /**
+ * Get posts to offer a reader who just finished one
+ *
+ * Ranked by number of shared tags, then recency. Tag overlap beats
+ * chronology here because the posts are essays, not a series — "another post
+ * about agent evals" is a better next read than "whatever went up next".
+ * Topped up with recent posts so the block is never short, and never empty
+ * just because a post carries unusual tags.
+ *
+ * @param post The post being read
+ * @param lang The language code to filter by, defaults to site's default language
+ * @param limit Maximum number of posts to return
+ * @returns Related posts, most relevant first, excluding the current post
+ */
+async function _getRelatedPosts(post: CollectionEntry<'posts'>, lang?: Language, limit = 3): Promise<Post[]> {
+  const posts = await getPosts(lang)
+  const slug = post.data.abbrlink || post.id
+  const tags = new Set(post.data.tags ?? [])
+
+  const candidates = posts.filter(p => (p.data.abbrlink || p.id) !== slug)
+
+  const scored = candidates
+    .map(p => ({
+      post: p,
+      shared: (p.data.tags ?? []).filter(tag => tags.has(tag)).length,
+    }))
+    .filter(entry => entry.shared > 0)
+    .sort((a, b) =>
+      b.shared - a.shared
+      || b.post.data.published.valueOf() - a.post.data.published.valueOf(),
+    )
+    .map(entry => entry.post)
+
+  if (scored.length >= limit) {
+    return scored.slice(0, limit)
+  }
+
+  // Top up with the most recent posts not already picked
+  const picked = new Set(scored.map(p => p.id))
+  const filler = candidates.filter(p => !picked.has(p.id))
+  return [...scored, ...filler].slice(0, limit)
+}
+
+export const getRelatedPosts = memoize(_getRelatedPosts)
+
+/**
+ * Get all tags with their post counts, most used first
+ *
+ * @param lang The language code to filter by, defaults to site's default language
+ * @returns Array of [tag, count] pairs sorted by count descending
+ */
+async function _getAllTagsWithCount(lang?: Language): Promise<[string, number][]> {
+  const tagMap = await getPostsGroupByTags(lang)
+  return Array.from(tagMap.entries())
+    .map(([tag, posts]) => [tag, posts.length] as [string, number])
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+}
+
+export const getAllTagsWithCount = memoize(_getAllTagsWithCount)
+
+/**
  * Check which languages support a specific tag
  *
  * @param tag The tag name to check language support for

@@ -91,8 +91,25 @@ export function getNextGlobalLangPath(currentPath: string): string {
  * @returns Path for next supported language
  */
 export function getNextSupportedLangPath(currentPath: string, supportedLangs: Language[]): string {
+  const currentLang = getLangFromPath(currentPath)
+  return getNextLangPath(currentPath, currentLang, getNextSupportedLang(currentPath, supportedLangs))
+}
+
+/**
+ * Resolve which language the switcher will move to
+ *
+ * Split out from getNextSupportedLangPath so the switcher can label itself
+ * with the destination language rather than an ambiguous glyph.
+ *
+ * @param currentPath Current page path
+ * @param supportedLangs List of supported language codes
+ * @returns The language code the switcher points at
+ */
+export function getNextSupportedLang(currentPath: string, supportedLangs: Language[]): Language {
+  const currentLang = getLangFromPath(currentPath)
+
   if (supportedLangs.length === 0) {
-    return getNextGlobalLangPath(currentPath)
+    return getNextGlobalLang(currentLang)
   }
 
   // Sort supported languages by global priority
@@ -103,10 +120,6 @@ export function getNextSupportedLangPath(currentPath: string, supportedLangs: La
     (a, b) => (langPriority.get(a) ?? 0) - (langPriority.get(b) ?? 0),
   )
 
-  // Get current language and next in cycle
-  const currentLang = getLangFromPath(currentPath)
   const currentIndex = sortedLangs.indexOf(currentLang)
-  const nextLang = sortedLangs[(currentIndex + 1) % sortedLangs.length]
-
-  return getNextLangPath(currentPath, currentLang, nextLang)
+  return sortedLangs[(currentIndex + 1) % sortedLangs.length]
 }
