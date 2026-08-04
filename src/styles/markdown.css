@@ -241,10 +241,13 @@
    grey box as every incidental quote. Deliberately not a tinted panel: the
    summary is the article opening, not an aside next to it. */
 .heti blockquote.tldr {
-  margin: 0 0 2rem;
-  padding: 0 0 1.4rem;
+  margin: 0 0 2.6rem;
+  padding: 1.15rem 0 1.5rem;
+  /* Ruled top and bottom. Only closing the block left its start unmarked, so
+     it read as a first paragraph that happened to open with a red word. */
   border: none;
-  border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.18);
+  border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.28);
+  border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.28);
   border-radius: 0;
   background: none;
   color: oklch(var(--un-preset-theme-colors-primary));
@@ -253,12 +256,28 @@
 .heti blockquote.tldr :where(p) {
   line-height: 1.8;
 }
-/* The "TL;DR" lead-in becomes the label instead of just bold body text. */
+/* Below the rail breakpoint the collapsed outline sits directly above and
+   already closes with a rule; a second one right under it is rule clutter.
+   Let the outline's bottom edge be this block's top boundary. Desktop keeps
+   its own rule, because there the outline lives in the rail. */
+@media (max-width: 1023px) {
+  /* `~`, not `+`: the outline ships with an adjacent inline script, so
+     #post-content is not its immediate element sibling. */
+  #toc ~ #post-content > blockquote.tldr:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+/* The "TL;DR" lead-in becomes a kicker on its own line — the thing that
+   actually announces where the block starts. The plugin strips the colon
+   that used to follow it inline. */
 .heti blockquote.tldr strong:first-child {
+  display: block;
+  margin-bottom: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.72em;
+  font-size: 0.68em;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: oklch(var(--un-preset-theme-colors-accent));
 }

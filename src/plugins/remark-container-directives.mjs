@@ -129,6 +129,16 @@ export function remarkContainerDirectives() {
         return
       }
 
+      // The label is promoted to its own line in CSS, which would strand the
+      // separator that followed it inline. Drop it here so the summary starts
+      // on its first real word.
+      if (firstChild.type === 'strong') {
+        const afterLabel = node.children[0].children[1]
+        if (afterLabel?.type === 'text') {
+          afterLabel.value = afterLabel.value.replace(/^\s*[:：]\s*/, '')
+        }
+      }
+
       node.data ??= {}
       node.data.hProperties = {
         ...node.data.hProperties,
