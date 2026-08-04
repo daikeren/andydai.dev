@@ -1,6 +1,9 @@
 :root {
-  --font-sans: "Mona Sans", system-ui, -apple-system, "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* "CJK" is the size-adjusted alias from font.css — see the note there.
+     It carries a CJK-only unicode-range, so Latin still resolves to the
+     Latin face ahead of it. */
+  --font-sans: "Mona Sans", "CJK", system-ui, -apple-system, "PingFang TC", "Heiti TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  --font-mono: "JetBrains Mono", "CJK", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   /* Low-emphasis metadata ink — quieter than body, still AA (5.8:1 on bg) */
   --ink-muted: oklch(0.50 0.012 50);
 }
@@ -51,20 +54,27 @@ body::selection {
 .page-head {
   margin-bottom: 2.4rem;
 }
+/* Weight 700 to match .post-title — see the note there on PingFang's
+   Semibold ceiling. */
 .page-title {
   margin: 0;
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(1.7rem, 1.4rem + 1.3vw, 2.1rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
   color: oklch(var(--un-preset-theme-colors-primary));
   text-wrap: balance;
 }
+/* A full sentence of prose, not a metadata chip — it was set at metadata size
+   and colour, which made the one explanatory line on each listing page the
+   hardest text on the page to read. */
 .page-sub {
-  margin: 0.85rem 0 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--ink-muted);
+  margin: 0.8rem 0 0;
+  max-width: 60ch;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: oklch(var(--un-preset-theme-colors-secondary));
+  text-wrap: pretty;
 }
 
 /* Heading Anchor Link >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */

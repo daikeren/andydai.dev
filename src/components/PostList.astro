@@ -65,7 +65,7 @@ const isHome = isHomePage(Astro.url.pathname)
   }
 
   .post-row + .post-row {
-    margin-top: 1.6rem;
+    margin-top: 1.9rem;
   }
 
   .post-row-link {
@@ -94,9 +94,10 @@ const isHome = isHomePage(Astro.url.pathname)
   }
 
   .post-row-title {
-    font-size: 1.06rem;
+    font-size: 1.09rem;
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.45;
+    letter-spacing: -0.008em;
     color: oklch(var(--un-preset-theme-colors-primary));
     text-wrap: pretty;
     transition: color 0.18s ease-out;
@@ -113,10 +114,13 @@ const isHome = isHomePage(Astro.url.pathname)
 
   .post-row-desc {
     display: none;
-    margin-top: 0.45rem;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: oklch(var(--un-preset-theme-colors-secondary));
+    margin-top: 0.5rem;
+    /* Held to ~62ch so the summary reads as a subordinate note rather than a
+       second block of body text competing with the title above it. */
+    max-width: 62ch;
+    font-size: 0.895rem;
+    line-height: 1.72;
+    color: oklch(var(--un-preset-theme-colors-secondary) / 0.88);
     text-wrap: pretty;
   }
 
@@ -129,8 +133,10 @@ const isHome = isHomePage(Astro.url.pathname)
 
   /* Desktop: aligned mono metadata column beside the title block */
   @media (min-width: 1024px) {
+    /* Descriptions turn on here, so rows need more air between them than the
+       title-only mobile list to stay readable as discrete entries. */
     .post-row + .post-row {
-      margin-top: 2rem;
+      margin-top: 2.6rem;
     }
     .post-row-link {
       grid-template-columns: 5rem 1fr;
@@ -145,7 +151,7 @@ const isHome = isHomePage(Astro.url.pathname)
       margin-top: 0.2rem;
     }
     .post-row-title {
-      font-size: 1.12rem;
+      font-size: 1.16rem;
     }
     .post-row-desc {
       display: block;

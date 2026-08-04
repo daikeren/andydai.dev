@@ -52,11 +52,13 @@ const TitleTag = isPost ? 'div' : 'h1'
     color: oklch(var(--un-preset-theme-colors-accent));
   }
 
+  /* No width cap: the desktop rail is only 13rem wide and wraps this on its
+     own, while a cap here was the one thing forcing a two-line, mid-word
+     break on phones — where there is plenty of room for a single line. */
   .role {
     margin: 0.7rem 0 0;
-    max-width: 22ch;
     font-size: 0.82rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: oklch(var(--un-preset-theme-colors-secondary) / 0.92);
     text-wrap: pretty;
   }
@@ -67,7 +69,6 @@ const TitleTag = isPost ? 'div' : 'h1'
     }
     .role {
       margin-top: 0.85rem;
-      max-width: none;
     }
   }
 </style>

@@ -50,18 +50,20 @@ const homePageTitle = currentLang === 'en'
 </Layout>
 
 <style>
+  /* Has to clear the gap between rows inside a group, or the year rule stops
+     reading as a divider and just looks like another row. */
   .index-group + .index-group {
-    margin-top: 3rem;
+    margin-top: 4.25rem;
   }
 
   .index-year {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 0 0 1.6rem;
-    font-size: 0.75rem;
+    gap: 0.9rem;
+    margin: 0 0 1.75rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--ink-muted);
   }
   .index-year::after {

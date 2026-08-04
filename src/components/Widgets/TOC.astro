@@ -18,6 +18,9 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
   <details id="toc" class="toc no-heti" open>
     <summary class="toc-summary">
       <span class="toc-label">{currentUI.toc}</span>
+      <svg class="toc-caret" aria-hidden="true" viewBox="0 0 12 12" fill="none">
+        <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
     </summary>
     <nav aria-label="Table of Contents">
       <ul id="toc-links-list" class="toc-list">
@@ -38,27 +41,59 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
   </details>
 )}
 
+{/*
+  Ships open so the contents are in the markup for crawlers and no-JS readers.
+  On a phone an eight-entry TOC pushes the first paragraph off the screen
+  entirely, so it collapses below the rail breakpoint. Inline and adjacent to
+  the element, this runs during parse — the panel is never painted open.
+  `data-astro-rerun` re-applies it after a ClientRouter navigation.
+*/}
+<script is:inline data-astro-rerun>
+  (() => {
+    const toc = document.getElementById('toc')
+    if (toc && window.matchMedia('(max-width: 1023px)').matches)
+      toc.open = false
+  })()
+</script>
+
 <style>
   .toc {
-    margin: 0 0 2.75rem;
+    margin: 0 0 2.25rem;
     padding: 0.9rem 0 1.05rem;
     border-top: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.16);
     border-bottom: 1px solid oklch(var(--un-preset-theme-colors-secondary) / 0.16);
+  }
+  /* Collapsed, this is a single control — it does not need a block's worth of
+     padding under it. */
+  .toc:not([open]) {
+    padding-bottom: 0.9rem;
+  }
+  @media (min-width: 1024px) {
+    .toc {
+      margin-bottom: 2.75rem;
+    }
   }
 
   .toc-summary {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     cursor: pointer;
     list-style: none;
     user-select: none;
+    /* Enlarges the tap target without changing the visual rhythm. */
+    padding-block: 0.35rem;
+    margin-block: -0.35rem;
   }
   .toc-summary::-webkit-details-marker {
     display: none;
   }
   .toc-summary::before {
     display: none;
+  }
+  .toc-summary:hover .toc-label,
+  .toc-summary:hover .toc-caret {
+    color: oklch(var(--un-preset-theme-colors-primary));
   }
 
   .toc-label {
@@ -68,6 +103,21 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--ink-muted);
+    transition: color 0.16s ease-out;
+  }
+
+  /* The caret is what makes the label read as a control rather than a
+     decorative label sitting above the list. */
+  .toc-caret {
+    width: 0.72rem;
+    height: 0.72rem;
+    color: var(--ink-muted);
+    transition:
+      transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.16s ease-out;
+  }
+  .toc[open] .toc-caret {
+    transform: rotate(180deg);
   }
 
   .toc-list {
@@ -79,10 +129,18 @@ const filteredHeadings = headings.filter(heading => heading.depth >= 2 && headin
 
   .toc-item {
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.55;
   }
+  /* Touch-first spacing: a 0.88rem link is ~21px tall, so the gap is doing the
+     work of making each entry separately tappable. Tightened on the desktop
+     rail breakpoint, where the pointer is precise. */
   .toc-item + .toc-item {
-    margin-top: 0.5rem;
+    margin-top: 0.85rem;
+  }
+  @media (min-width: 1024px) {
+    .toc-item + .toc-item {
+      margin-top: 0.5rem;
+    }
   }
   .toc-item.is-h3 {
     margin-left: 1.1rem;

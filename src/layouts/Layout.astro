@@ -79,17 +79,20 @@ const fontStyle = themeConfig.global.fontStyle === 'serif' ? 'font-serif' : 'fon
     max-width: 46rem;
     margin-inline: auto;
     padding-inline: var(--pad-inline);
-    padding-block: 2.75rem 3.5rem;
+    padding-block: 2.25rem 3.5rem;
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
   }
 
+  /* Stacked above the article on phones, so it is spending the reader's first
+     screen. Kept tight here and given room back in the desktop rail below,
+     where it costs nothing. */
   .masthead {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2.75rem;
+    gap: 1.25rem;
+    margin-bottom: 2.25rem;
   }
 
   /* Mobile: nav sits left, theme/lang controls sit right on the same row */

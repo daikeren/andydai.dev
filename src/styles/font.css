@@ -2,7 +2,8 @@
  * Type system — "a reading instrument"
  *   Mona Sans      → wordmark, headings, UI, Latin body (variable 200–900)
  *   JetBrains Mono → metadata, code (variable 100–800)
- *   CJK            → system stack (PingFang TC / JhengHei / Noto Sans TC)
+ *   CJK            → system stack (PingFang TC / JhengHei / Noto Sans TC),
+ *                    optically size-matched to Mona Sans — see "CJK" below.
  * Variable woff2 self-hosted from Fontsource; CJK is intentionally not shipped.
  */
 
@@ -51,4 +52,69 @@
   font-style: normal;
   font-display: swap;
   unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* CJK — optical size correction >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *
+ * Every sentence on this site mixes scripts, so the two have to agree on
+ * optical size. They don't by default: at the same font-size a PingFang
+ * ideograph inks 0.884em tall while a Mona Sans cap inks 0.729em — the CJK
+ * runs 21% larger and visually shouts down the Latin sitting beside it.
+ *
+ * These faces re-expose the system CJK fonts under one alias with
+ * `size-adjust: 92%`, which lands the ideograph at ~1.11x cap height: still
+ * a touch larger than the Latin caps (correct for a full-body square glyph),
+ * no longer a different size. `unicode-range` keeps the alias off Latin, so
+ * Mona Sans is untouched.
+ *
+ * `local()` is matched by PostScript name — Chrome ignores family names here.
+ * The 92% is measured against PingFang (macOS/iOS); Noto Sans CJK and
+ * JhengHei are within a percent of the same ideograph metric, so they share
+ * it. Where no local face matches, the @font-face errors and the stack falls
+ * through to the plain system CJK font, i.e. exactly today's rendering.
+ */
+
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Ultralight"), local("NotoSansTC-Thin"), local("NotoSansCJKtc-Thin");
+  font-weight: 100;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Thin"), local("NotoSansTC-ExtraLight"), local("NotoSansCJKtc-ExtraLight");
+  font-weight: 200;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Light"), local("NotoSansTC-Light"), local("NotoSansCJKtc-Light"), local("MicrosoftJhengHeiLight");
+  font-weight: 300;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Regular"), local("NotoSansTC-Regular"), local("NotoSansCJKtc-Regular"), local("MicrosoftJhengHeiRegular");
+  font-weight: 400;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Medium"), local("NotoSansTC-Medium"), local("NotoSansCJKtc-Medium");
+  font-weight: 500;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
+}
+/* PingFang stops at Semibold, so 600–900 all resolve here. `font-synthesis:
+   none` (global.css) keeps the browser from smearing a faux-bold on top. */
+@font-face {
+  font-family: "CJK";
+  src: local("PingFangTC-Semibold"), local("NotoSansTC-Bold"), local("NotoSansCJKtc-Bold"), local("MicrosoftJhengHeiBold");
+  font-weight: 600 900;
+  size-adjust: 92%;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-30FF, U+3100-312F, U+31A0-31BF, U+3200-32FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE30-FE4F, U+FF00-FFEF;
 }

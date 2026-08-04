@@ -6,23 +6,34 @@
 
 /* Global Styles */
 .heti {
-  --at-apply: 'break-words hyphens-auto cjk:tracking-wide';
+  --at-apply: 'break-words cjk:tracking-wide';
   font-size: 1.0625rem;
   line-height: 1.78;
+  /* Hyphenation off: at a 42rem measure, ragged-right English needs no help,
+     and `hyphens: auto` was breaking short words mid-stem ("func-tion",
+     "re-quirements"). `break-words` above still rescues long URLs and
+     identifiers, which is the case that actually overflows. */
+  hyphens: manual;
 }
 /* Comfortable CJK leading for running text only (not headings) */
 .heti :where(p, li, dd, td, th, figcaption):where(:lang(zh), :lang(ja), :lang(ko)) {
-  line-height: 1.85;
+  line-height: 1.9;
 }
 
-/* Customized Post Title */
+/* Customized Post Title
+   Weight 700, not 800: PingFang tops out at Semibold and `font-synthesis:
+   none` (correctly) refuses to fake the rest, so a Latin 800 leaves the
+   Chinese half of a mixed title visibly lighter than the English half. 700
+   keeps the display weight while matching the stroke the CJK can actually
+   reach. The clamp floor is low enough that a long English title stays under
+   four lines on a 375px screen. */
 .heti .post-title,
 .heti .post-title :where(span) {
   --at-apply: 'c-primary';
-  font-weight: 800;
-  font-size: clamp(2rem, 1.55rem + 2.2vw, 2.7rem);
-  line-height: 1.2;
-  letter-spacing: -0.021em;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.28rem + 2.5vw, 2.7rem);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .heti .post-title {
@@ -38,14 +49,20 @@
   line-height: 1.3;
   letter-spacing: -0.012em;
 }
+/* Scale: ~1.25 between the steps that carry structure (h4 → h3 → h2 → h1).
+   The old ramp sat ~1.14 apart, which read as one undifferentiated size. */
 .heti :where(h1) {
-  font-size: 1.62rem;
+  font-size: 1.95rem;
+  line-height: 1.25;
+  letter-spacing: -0.018em;
 }
 .heti :where(h2) {
-  font-size: 1.42rem;
+  font-size: 1.55rem;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
 }
 .heti :where(h3) {
-  font-size: 1.2rem;
+  font-size: 1.24rem;
   font-weight: 650;
 }
 .heti :where(h4) {
@@ -64,6 +81,21 @@
 .heti :where(h1, h2, h3) {
   --at-apply: 'text-balance cjk:text-pretty cjk:tracking-wider';
 }
+/* Sectioning rhythm: an h2 opens a new section, so it gets a clear gap above
+   and binds tightly to the text below it. h3/h4 group *under* their h2, so
+   they take less air — the space itself shows the nesting. */
+.heti :where(h2) {
+  margin-top: 2.5em;
+  margin-bottom: 0.62em;
+}
+.heti :where(h3) {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.heti :where(h4, h5, h6) {
+  margin-top: 1.9em;
+  margin-bottom: 0.55em;
+}
 .heti :where(h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6) {
   margin-top: 0.9em;
 }
@@ -75,7 +107,9 @@
   content: "";
   position: absolute;
   left: -1.1rem;
-  top: 0.34em;
+  /* Sits against the cap of the first line, not the line box. Tied to the
+     h2 line-height above — revisit together. */
+  top: 0.42em;
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 1px;
@@ -89,9 +123,14 @@
   }
 }
 
-/* Paragraphs */
+/* Paragraphs
+   Ragged-right in both scripts. Justified CJK is tidy when the text is pure
+   CJK, but these posts code-switch constantly and justification stretches the
+   inter-word spaces inside the Latin runs — the Chinese sets solid while the
+   English opens up, which is exactly the rhythm to avoid here. */
 .heti :where(p:not(.no-heti):not(.no-heti *)) {
-  --at-apply: 'mb-4 text-pretty cjk:text-justify';
+  --at-apply: 'text-pretty';
+  margin-bottom: 1.4rem;
 }
 
 /* Links */
@@ -267,8 +306,15 @@
 .heti :where(ul, ol) :where(ul, ol) :where(ul) {
   --at-apply: 'list-square';
 }
+/* 0.25em disappeared against a 1.9 CJK line-height — multi-line items ran
+   together into one block. This separates items without breaking the list
+   into loose paragraphs. */
 .heti :where(li) {
-  --at-apply: 'mt-0.25em list-unset';
+  --at-apply: 'list-unset';
+  margin-top: 0.5em;
+}
+.heti :where(li):first-child {
+  margin-top: 0;
 }
 .heti :is(h1, h2, h3, h4, h5, h6, ul, ol) + :is(ul, ol) {
   --at-apply: 'mt-4';

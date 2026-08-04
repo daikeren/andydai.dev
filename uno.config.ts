@@ -11,6 +11,12 @@ import { themeConfig } from './src/config.ts'
 
 const { light, dark } = themeConfig.color
 
+// Shared font stacks. "CJK" is the size-adjusted alias declared in
+// src/styles/font.css; it carries a CJK-only unicode-range, so Latin always
+// resolves to Mona Sans regardless of where the alias sits in the stack.
+const SANS = ['Mona Sans', 'CJK', 'system-ui', '-apple-system', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'Noto Sans TC', 'sans-serif']
+const MONO = ['JetBrains Mono', 'CJK', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
+
 export default defineConfig({
   presets: [
     presetWind3(),
@@ -40,18 +46,21 @@ export default defineConfig({
       caution: 'oklch(50.5% 0.213 27.518)', // red-700
     },
     fontFamily: {
-      // Latin → Mona Sans; CJK falls through per-glyph to the system stack.
-      sans: ['Mona Sans', 'system-ui', '-apple-system', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'Noto Sans TC', 'sans-serif'],
+      // Latin → Mona Sans; CJK → the "CJK" alias, which re-exposes the system
+      // CJK font at size-adjust 92% so both scripts share an optical size
+      // (see src/styles/font.css). The raw system names stay after it as the
+      // fallback for platforms where no local() face matches.
+      sans: [...SANS],
       // Monospace signature → JetBrains Mono (metadata + code).
-      mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+      mono: [...MONO],
       // Display / wordmark / headings.
-      title: ['Mona Sans', 'system-ui', '-apple-system', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'Noto Sans TC', 'sans-serif'],
+      title: [...SANS],
       // Navigation + UI labels.
-      navbar: ['Mona Sans', 'system-ui', '-apple-system', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'Noto Sans TC', 'sans-serif'],
+      navbar: [...SANS],
       // Metadata: dates, reading time, tags, year ticks.
-      time: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+      time: [...MONO],
       // Retained alias (legacy refs) → resolves to the body sans stack.
-      serif: ['Mona Sans', 'system-ui', '-apple-system', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'Noto Sans TC', 'sans-serif'],
+      serif: [...SANS],
     },
   },
   // Force emission of the accent theme variable: it is referenced only via
