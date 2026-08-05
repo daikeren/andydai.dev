@@ -142,7 +142,7 @@ export const themeConfig: ThemeConfig = {
     },
     // google analytics
     // https://analytics.google.com
-    googleAnalyticsID: "", // TODO: 加入 GA ID
+    googleAnalyticsID: "G-LRJEFB1XY2",
     // umami analytics
     // https://cloud.umami.is
     umamiAnalyticsID: "",
