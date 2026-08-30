@@ -39,8 +39,8 @@
     "remark-directive": "^4.0.0",
     "remark-math": "^6.0.0",
     "sanitize-html": "^2.17.7",
-    "sharp": "^0.35.3",
-    "twikoo": "^1.7.19",
+    "sharp": "^0.35.4",
+    "twikoo": "^1.7.20",
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
