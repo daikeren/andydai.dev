@@ -79,7 +79,7 @@ We sort them into two-way doors and one-way doors. Looking up an order, checking
 
 There's no universal answer here. Every tool needs its own discussion: what happens if this goes wrong, who gets hurt, can we reverse it? Some cases genuinely don't matter if they're wrong. Some absolutely can't be wrong. Talk it through per tool, instead of flipping everything on or off right before launch.
 
-Require approval for everything and the agent is useless; customers wait forever. Require approval for nothing and you get the example above.
+Require approval for everything and the agent is useless; customers wait forever. Require approval for nothing and you're missing the checkpoint the example above didn't have.
 
 ## Don't swing to the other extreme
 
