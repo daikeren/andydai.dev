@@ -23,7 +23,7 @@ Most AI POCs I see start the same way. One motivated manager wants to bring AI i
 
 The POC works, more or less. The demo looks good. Then it's time to roll it out to the people who'd actually use it, and everything slows down.
 
-This isn't unique to any one market. In Deloitte's [State of AI in the Enterprise](https://news.designrush.com/why-enterprise-ai-fails-to-scale) survey this year, 84% of companies increased AI spending, but only 25% have moved 40% or more of their AI experiments into production. The money is spent and the experiments are run. The next step is where things stop.
+This isn't unique to any one market. Deloitte's [State of AI in the Enterprise](https://www.deloitte.com/cz-sk/en/services/consulting/research/the-state-of-ai-in-the-enterprise.html) surveyed 3,235 business and IT leaders this year: 84% plan to increase AI investment in the next financial year, but only 25% say they've moved 40% or more of their AI experiments into production. Budgets keep going up and plenty of experiments get run. The step after them is where things stop.
 
 ## Three places it gets stuck
 

@@ -23,7 +23,7 @@ faqs:
 
 POC 做完，也許有一點成效，demo 起來也不錯。然後要推給相關的人用的時候，事情就慢下來了。
 
-這不是台灣才有的現象。Deloitte 今年的 [State of AI in the Enterprise](https://news.designrush.com/why-enterprise-ai-fails-to-scale) 調查裡，84% 的企業增加了 AI 預算，但只有 25% 把四成以上的 AI 實驗推進了 production。錢有花，實驗也有做，卡在後面那一步。
+這不是台灣才有的現象。Deloitte 今年的 [State of AI in the Enterprise](https://www.deloitte.com/cz-sk/en/services/consulting/research/the-state-of-ai-in-the-enterprise.html) 調查了 3,235 位企業主管：84% 計畫在下一個財年增加 AI 投資，但只有 25% 說已經把四成以上的 AI 實驗推進 production。預算還在往上加，實驗也做了不少，卡住的是後面那一步。
 
 ## 卡住的三個地方
 
